@@ -71,3 +71,16 @@ Creates normal violins with specified means and standard deviations
 }
 }
 
+\examples{
+library(ggplot2)
+library(ggnormviolin)
+d <- data.frame(
+  Distribution = c("A", "B"),
+  Distribution_mean = c(80, 90),
+  Distribution_sd = c(15, 10)
+)
+
+ggplot(data = d, aes(x = Distribution)) +
+  geom_normviolin(aes(mu = Distribution_mean,
+                      sigma = Distribution_sd))
+}

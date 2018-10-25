@@ -83,6 +83,18 @@ StatNormViolin <- ggplot2::ggproto(
 #'   \item size
 #' }
 #' @export
+#' @examples
+#' library(ggplot2)
+#' library(ggnormviolin)
+#' d <- data.frame(
+#'   Distribution = c("A", "B"),
+#'   Distribution_mean = c(80, 90),
+#'   Distribution_sd = c(15, 10)
+#' )
+#'
+#' ggplot(data = d, aes(x = Distribution)) +
+#'   geom_normviolin(aes(mu = Distribution_mean,
+#'                       sigma = Distribution_sd))
 geom_normviolin <- function(
   mapping = NULL,
   data = NULL,

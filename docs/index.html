@@ -48,7 +48,14 @@
   <a href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/wjschne/ggnormviolin">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -71,36 +78,38 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of ggnormviolin from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"ggnormviolin"</span>)</a></code></pre></div>
+<p>To install the development version of ggnormviolin, you need to check if devtools is installed. If not, run this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a></code></pre></div>
+<p>Once you are sure you have devtools installed, you can install the development version of ggnormviolin from GitHub by running this code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"wjschne/ggnormviolin"</span>)</a></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>Suppose there are 4 hypothetically normal distributions with specific means and standard deviations. They can be plotted like so:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(ggnormviolin)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">  <span class="dt">Distribution =</span> <span class="kw">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">  <span class="dt">Distribution_mean =</span> <span class="kw">c</span>(<span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">110</span>, <span class="dv">130</span>),</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">  <span class="dt">Distribution_sd =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> Distribution)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="reference/geom_normviolin.html">geom_normviolin</a></span>(<span class="kw">aes</span>(<span class="dt">mu =</span> Distribution_mean, </a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">                      <span class="dt">sigma =</span> Distribution_sd), </a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">                  <span class="dt">width =</span> <span class="fl">0.25</span>,</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13">                  <span class="dt">fill =</span> <span class="st">"dodgerblue"</span>) </a></code></pre></div>
-<p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(ggnormviolin)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">Distribution =</span> <span class="kw">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">Distribution_mean =</span> <span class="kw">c</span>(<span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">110</span>, <span class="dv">130</span>),</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">Distribution_sd =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> Distribution)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="reference/geom_normviolin.html">geom_normviolin</a></span>(<span class="kw">aes</span>(<span class="dt">mu =</span> Distribution_mean, </a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">                      <span class="dt">sigma =</span> Distribution_sd), </a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">                  <span class="dt">width =</span> <span class="fl">0.25</span>,</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">                  <span class="dt">fill =</span> <span class="st">"dodgerblue"</span>) </a></code></pre></div>
+<p><img src="reference/figures/README-example-1.svg" width="100%"></p>
 <p>Suppose we want to highlight the two tails of the distributions. We can add a second layer with just the tails represending the outermost 2.5% of the distributions. Set the <code>p_tails</code> to specify the total aread of the tails. Thus, if <code>p_tails</code> = 0.05, each tail will represent the outermost 2.5% of the distributions (i.e, 0.05 = 2 &amp;mult; 0.025).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> Distribution)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normviolin.html">geom_normviolin</a></span>(<span class="kw">aes</span>(<span class="dt">mu =</span> Distribution_mean, </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                      <span class="dt">sigma =</span> Distribution_sd), </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">                  <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">fill =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/geom_normviolin.html">geom_normviolin</a></span>(<span class="kw">aes</span>(<span class="dt">mu =</span> Distribution_mean, </a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">                      <span class="dt">sigma =</span> Distribution_sd), </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">                  <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">p_tail =</span> <span class="fl">0.05</span>, <span class="dt">fill =</span> <span class="st">"gray30"</span>)</a></code></pre></div>
-<p><img src="reference/figures/README-example2-1.png" width="100%"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> d, <span class="kw">aes</span>(<span class="dt">x =</span> Distribution)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normviolin.html">geom_normviolin</a></span>(<span class="kw">aes</span>(<span class="dt">mu =</span> Distribution_mean, </a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">                      <span class="dt">sigma =</span> Distribution_sd), </a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">                  <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">fill =</span> <span class="st">"dodgerblue"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/geom_normviolin.html">geom_normviolin</a></span>(<span class="kw">aes</span>(<span class="dt">mu =</span> Distribution_mean, </a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">                      <span class="dt">sigma =</span> Distribution_sd), </a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">                  <span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">p_tail =</span> <span class="fl">0.05</span>, <span class="dt">fill =</span> <span class="st">"gray30"</span>)</a></code></pre></div>
+<p><img src="reference/figures/README-example2-1.svg" width="100%"></p>
 </div>
 </div>
   </div>
@@ -109,7 +118,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="NA">NA</a>
+<li>Browse source code at <br><a href="https://github.com/wjschne/ggnormviolin">https://​github.com/​wjschne/​ggnormviolin</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/wjschne/ggnormviolin/issues">https://​github.com/​wjschne/​ggnormviolin/​issues</a>
 </li>
 </ul>
 </div>

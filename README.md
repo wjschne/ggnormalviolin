@@ -8,11 +8,18 @@ specified means and standard deviations.
 
 ## Installation
 
-You can install the released version of ggnormviolin from
-[CRAN](https://CRAN.R-project.org) with:
+To install the development version of ggnormviolin, you need to check if
+devtools is installed. If not, run this:
 
 ``` r
-install.packages("ggnormviolin")
+install.packages("devtools")
+```
+
+Once you are sure you have devtools installed, you can install the
+development version of ggnormviolin from GitHub by running this code:
+
+``` r
+devtools::install_github("wjschne/ggnormviolin")
 ```
 
 ## Example

@@ -82,7 +82,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/wjschne/ggnormviolin">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -96,7 +101,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Creates normal violins with specified means and standard deviations</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/wjschne/ggnormviolin/blob/master/R/main.R'><code>R/main.R</code></a></small>
     <div class="hidden name"><code>geom_normviolin.Rd</code></div>
     </div>
 
@@ -187,6 +192,18 @@ to the paired geom/stat.</p></td>
 </ul>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>ggplot2</span>)
+<span class='fu'>library</span>(<span class='no'>ggnormviolin</span>)
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(
+  <span class='kw'>Distribution</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>),
+  <span class='kw'>Distribution_mean</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>80</span>, <span class='fl'>90</span>),
+  <span class='kw'>Distribution_sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>15</span>, <span class='fl'>10</span>)
+)
+
+<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Distribution</span>)) +
+  <span class='fu'>geom_normviolin</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>Distribution_mean</span>,
+                      <span class='kw'>sigma</span> <span class='kw'>=</span> <span class='no'>Distribution_sd</span>))</div><div class='img'><img src='geom_normviolin-1.svg' alt='' width='700' height='700' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -194,7 +211,9 @@ to the paired geom/stat.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#aesthetics">Aesthetics</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
