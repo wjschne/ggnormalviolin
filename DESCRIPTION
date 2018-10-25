@@ -1,0 +1,19 @@
+Package: ggnormviolin
+Title: Make normal violin plots with specified means and standard deviations
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "W. Joel",
+           family = "Schneider",
+           role = c("aut", "cre"),
+           email = "w.joel.schneider@gmail.com",
+           comment = c(ORCID = "0000-0002-8393-5316"))
+Description: Uses ggplot2 to create normally distributed violin plots with specified means and standard deviations. This function can be useful in showing hypothetically normal distributions and confidence intervals.
+License: CC0
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    ggplot2
+Suggests: 
+    spelling
+Language: en-US
+RoxygenNote: 6.1.0
