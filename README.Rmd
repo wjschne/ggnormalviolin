@@ -13,7 +13,8 @@ knitr::opts_chunk$set(
 )
 library(ggplot2)
 ```
-# ggnormviolin
+# ggnormviolin <img src="man/figures/logo.png" align="right" height=140/>
+
 
 The ggnormviolin package uses ggplot2 to create normal violin plots with specified means and standard deviations.
 
@@ -40,12 +41,15 @@ Suppose there are 4 hypothetically normal distributions with specific means and 
 ```{r example, dev="svg"}
 library(ggplot2)
 library(ggnormviolin)
+
+# Make data
 d <- data.frame(
   Distribution = c("A", "B", "C", "D"),
   Distribution_mean = c(80, 90, 110, 130),
   Distribution_sd = c(15, 10, 20, 5)
 )
 
+# Make Plot
 ggplot(data = d, aes(x = Distribution)) +
   geom_normviolin(aes(mu = Distribution_mean, 
                       sigma = Distribution_sd), 
@@ -60,9 +64,12 @@ Suppose we want to highlight the two tails of the distributions. We can add a se
 ggplot(data = d, aes(x = Distribution)) +
   geom_normviolin(aes(mu = Distribution_mean, 
                       sigma = Distribution_sd), 
-                  width = 0.25, fill = "dodgerblue") +
+                  width = 0.25, 
+                  fill = "dodgerblue") +
   geom_normviolin(aes(mu = Distribution_mean, 
                       sigma = Distribution_sd), 
-                  width = 0.25, p_tail = 0.05, fill = "gray30")
+                  width = 0.25,
+                  fill = "dodgerblue4",
+                  p_tail = 0.05)
 ```
 

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggnormviolin
+# ggnormviolin <img src="man/figures/logo.png" align="right" height=140/>
 
 The ggnormviolin package uses ggplot2 to create normal violin plots with
 specified means and standard deviations.
@@ -30,12 +30,15 @@ means and standard deviations. They can be plotted like so:
 ``` r
 library(ggplot2)
 library(ggnormviolin)
+
+# Make data
 d <- data.frame(
   Distribution = c("A", "B", "C", "D"),
   Distribution_mean = c(80, 90, 110, 130),
   Distribution_sd = c(15, 10, 20, 5)
 )
 
+# Make Plot
 ggplot(data = d, aes(x = Distribution)) +
   geom_normviolin(aes(mu = Distribution_mean, 
                       sigma = Distribution_sd), 
@@ -55,10 +58,13 @@ outermost 2.5% of the distributions (i.e, 0.05 = 2 \&mult; 0.025).
 ggplot(data = d, aes(x = Distribution)) +
   geom_normviolin(aes(mu = Distribution_mean, 
                       sigma = Distribution_sd), 
-                  width = 0.25, fill = "dodgerblue") +
+                  width = 0.25, 
+                  fill = "dodgerblue") +
   geom_normviolin(aes(mu = Distribution_mean, 
                       sigma = Distribution_sd), 
-                  width = 0.25, p_tail = 0.05, fill = "gray30")
+                  width = 0.25,
+                  fill = "dodgerblue4",
+                  p_tail = 0.05)
 ```
 
 <img src="man/figures/README-example2-1.svg" width="100%" />
