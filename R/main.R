@@ -7,37 +7,44 @@ StatNormalViolin <- ggplot2::ggproto(
   `_class` = "StatNormalViolin",
   `_inherit` = ggplot2::Stat,
   required_aes = c("x","mu","sigma"),
-  default_aes = ggplot2::aes(width = 0.6,
-                    nsigma = 4),
-  # setup_params = function(data, params) {
-  #   str(params)
-  #
-  #   if (is.null(params$width))
-  #     params$width <- 0.6
-  #
-  #   if (is.null(params$nsigma))
-  #     params$nsigma <- 4
-  #
-  #   params
-  # },
+  default_aes = ggplot2::aes(
+    width = 0.6,
+    nsigma = 4,
+    p_tail = 0,
+    p_lower_tail = 0,
+    p_upper_tail = 0),
   setup_data = function(data, params) {
     if (is.null(data$width))
       data$width = params$width
     if (is.null(data$nsigma))
       data$nsigma = params$nsigma
+    if (is.null(data$p_tail)) {
+      data$p_tail = params$p_tail
+      if (all(params$p_upper_tail == 0))
+        data$p_upper_tail = params$p_tail / 2
+      if (all(params$p_lower_tail == 0))
+        data$p_lower_tail = params$p_tail / 2
+    }
+
+    if (is.null(data$p_upper_tail))
+      data$p_upper_tail = params$p_upper_tail
+    if (is.null(data$p_lower_tail))
+      data$p_lower_tail = params$p_lower_tail
 
     data$group <- 1:nrow(data)
 
     data
   },
   compute_group = function(
-    self,
     data,
     scales,
     lower_limit = NA,
     upper_limit = NA,
     width = 0.6,
-    nsigma = 4
+    nsigma = 4,
+    p_tail = 0,
+    p_upper_tail = 0,
+    p_lower_tail = 0
   ) {
     # The y values start at right side at 0, go up to the positive tail,
     # reverse to left side, go to the negative tail,
@@ -85,18 +92,15 @@ GeomNormalViolin <- ggplot2::ggproto(
     shape = 16,
     colour = NA,
     size = 0.5,
+    linetype = 1,
     fill = "gray70",
     alpha = 1,
     stroke = 0.5,
     tail_fill = "black",
-    tail_alpha = 1,
-    p_tail = 0,
-    p_lower_tail = 0,
-    p_upper_tail = 0
+    tail_alpha = 1
   ),
   draw_key = ggplot2::draw_key_polygon,
   draw_panel = function(
-    self,
     data,
     panel_scales,
     coord) {
@@ -105,18 +109,20 @@ GeomNormalViolin <- ggplot2::ggproto(
     d_param <- data %>%
       dplyr::group_by(group) %>%
       dplyr::summarise_all(.funs = list(dplyr::first))
-
     # Violin points transformed for grid coordinates
     dpoints <- coord$transform(data, panel_scales)
 
     # Violin polygons
     gbody <- grid::polygonGrob(
+      default.units = "native",
       x = dpoints$x,
       y = dpoints$y,
       id = dpoints$group,
       gp = grid::gpar(col = d_param$colour,
-                      fill = d_param$fill,
-                      alpha = d_param$alpha)
+                      fill = scales::alpha(d_param$fill,
+                                           d_param$alpha),
+                      lty = d_param$linetype,
+                      lwd = d_param$size * .pt)
     )
 
     # Filter data for upper tail
@@ -130,13 +136,17 @@ GeomNormalViolin <- ggplot2::ggproto(
 
       # Make upper tail polygon
       g_upper_tail <- grid::polygonGrob(
+        default.units = "native",
         x = duppertail$x,
         y = duppertail$y,
         id = duppertail$group,
         gp = grid::gpar(
           col = d_param$colour,
-          fill = d_param$tail_fill,
-          alpha = d_param$tail_alpha
+          fill = scales::alpha(d_param$tail_fill,
+                               d_param$tail_alpha),
+          lty = d_param$linetype,
+          lwd = d_param$size * .pt
+
         )
       )
     } else {
@@ -154,13 +164,16 @@ GeomNormalViolin <- ggplot2::ggproto(
 
       # Make lower tail polygon
       g_lower_tail <- grid::polygonGrob(
+        default.units = "native",
         x = dlowertail$x,
         y = dlowertail$y,
         id = dlowertail$group,
         gp = grid::gpar(
           col = d_param$colour,
-          fill = d_param$tail_fill,
-          alpha = d_param$tail_alpha
+          fill = scales::alpha(d_param$tail_fill,
+                               d_param$tail_alpha),
+          lty = d_param$linetype,
+          lwd = d_param$size * .pt
         )
       )
     } else {
@@ -192,15 +205,19 @@ GeomNormalViolin <- ggplot2::ggproto(
 #'   \item \strong{x}
 #'   \item \strong{mu} (mean of the normal distribution)
 #'   \item \strong{sigma} (standard deviation of the normal distribution)
-#'   \item alpha
+#'   \item width (width of violin)
+#'   \item nsigma (number of standard deviations to which the violins extend)
+#'   \item p_tail (2-tailed proportion of tails highlighted)
+#'   \item p_upper_tail (proportion of upper tails highlighted)
+#'   \item p_lower_tail (proportion of lower tails highlighted)
 #'   \item color
 #'   \item fill
+#'   \item alpha (of fills)
 #'   \item group
 #'   \item linetype
-#'   \item size
-#'   \item width
-#'   \item nsigma (number of standard deviations to which the violins extend)
+#'   \item size (of lines)
 #' }
+
 #' @examples
 #' library(ggplot2)
 #' library(ggnormalviolin)
@@ -224,12 +241,12 @@ geom_normalviolin <- function(
   p_upper_tail = p_tail / 2,
   tail_fill = "black",
   tail_alpha = 0.4,
+  width = 0.6,
   upper_limit = NA,
   lower_limit = NA,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  width = 0.6,
   ...
 ) {
 
@@ -257,41 +274,3 @@ geom_normalviolin <- function(
   )
 }
 
-# # Make data
-# d <- tibble::tibble(
-#   Distribution = c("A","B","C","D"),
-#   Distribution_mean = c(80, 90, 110, 130),
-#   Distribution_sd = c(15, 10, 20, 5),
-#   width = 0.04 * Distribution_sd,
-#   type = c(1,1,2,2)
-# )
-#
-#
-#
-# # Make Plot
-# ggplot(data = d, aes(x = Distribution)) +
-#   geom_normalviolin(aes(mu = Distribution_mean,
-#                         sigma = Distribution_sd,
-#                         fill = Distribution),
-#                     p_tail = 0.05)
-#
-# ggplot(data = d, aes(x = Distribution)) +
-#   geom_normalviolin(aes(mu = Distribution_mean,
-#                         sigma = Distribution_sd,
-#                         fill = Distribution),
-#                     p_tail = 0.05,
-#                     width = 2,
-#                     nsigma = 2)
-#
-# ggplot(data = d, aes(x = Distribution)) +
-#   geom_normalviolin(aes(mu = Distribution_mean,
-#                         sigma = Distribution_sd,
-#                         fill = Distribution,
-#                         width = Distribution_sd / 20,
-#                         nsigma = 1:4),
-#                     p_tail = 0.05)
-#
-#
-# StatNormalViolin$parameters(TRUE)
-# GeomNormalViolin$parameters(TRUE)
-# StatNormalViolin$default_aes

@@ -1,5 +1,5 @@
 Package: ggnormalviolin
-Title: Make normal violin plots with specified means and standard deviations
+Title: A ggplot2 Extension to Make Normal Violin Plots
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "W. Joel",
@@ -15,7 +15,8 @@ Imports:
     ggplot2,
     magrittr,
     dplyr,
-    grid
+    grid,
+    scales
 Suggests: 
     spelling
 Language: en-US

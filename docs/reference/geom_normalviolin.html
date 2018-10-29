@@ -115,9 +115,9 @@
 
     <pre class="usage"><span class='fu'>geom_normalviolin</span>(<span class='kw'>mapping</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nsigma</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>p_tail</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>p_lower_tail</span> <span class='kw'>=</span> <span class='no'>p_tail</span>/<span class='fl'>2</span>, <span class='kw'>p_upper_tail</span> <span class='kw'>=</span> <span class='no'>p_tail</span>/<span class='fl'>2</span>,
-  <span class='kw'>tail_fill</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tail_alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>lower_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>tail_fill</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tail_alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
+  <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>lower_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,6 +167,10 @@ will be used as the layer data.</p></td>
       <td><p>alpha value for tails</p></td>
     </tr>
     <tr>
+      <th>width</th>
+      <td><p>Width of normal violin</p></td>
+    </tr>
+    <tr>
       <th>upper_limit</th>
       <td><p>upper limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.</p></td>
     </tr>
@@ -195,10 +199,6 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. <code>borders()</code>.</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>Width of normal violin</p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>Other arguments passed on to <code>layer()</code>. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
@@ -214,14 +214,17 @@ to the paired geom/stat.</p></td>
 <li><p><strong>x</strong></p></li>
 <li><p><strong>mu</strong> (mean of the normal distribution)</p></li>
 <li><p><strong>sigma</strong> (standard deviation of the normal distribution)</p></li>
-<li><p>alpha</p></li>
+<li><p>width (width of violin)</p></li>
+<li><p>nsigma (number of standard deviations to which the violins extend)</p></li>
+<li><p>p_tail (2-tailed proportion of tails highlighted)</p></li>
+<li><p>p_upper_tail (proportion of upper tails highlighted)</p></li>
+<li><p>p_lower_tail (proportion of lower tails highlighted)</p></li>
 <li><p>color</p></li>
 <li><p>fill</p></li>
+<li><p>alpha (of fills)</p></li>
 <li><p>group</p></li>
 <li><p>linetype</p></li>
-<li><p>size</p></li>
-<li><p>width</p></li>
-<li><p>nsigma (number of standard deviations to which the violins extend)</p></li>
+<li><p>size (of lines)</p></li>
 </ul>
     
 
