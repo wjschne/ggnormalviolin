@@ -1,3 +1,4 @@
+^CRAN-RELEASE$
 ^\.github$
 ^appveyor\.yml$
 ^\.travis\.yml$

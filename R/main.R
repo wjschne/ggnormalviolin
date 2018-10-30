@@ -6,7 +6,7 @@
 StatNormalViolin <- ggplot2::ggproto(
   `_class` = "StatNormalViolin",
   `_inherit` = ggplot2::Stat,
-  required_aes = c("x","mu","sigma"),
+  required_aes = c("x", "mu", "sigma"),
   default_aes = ggplot2::aes(
     width = 0.6,
     nsigma = 4,
@@ -16,39 +16,39 @@ StatNormalViolin <- ggplot2::ggproto(
     face_left = TRUE,
     face_right = TRUE),
   setup_data = function(data, params) {
+
     if (is.null(data$width)) {
-      data$width = params$width
+      data$width <- params$width
     }
 
-
     if (is.null(data$nsigma))
-      data$nsigma = params$nsigma
+      data$nsigma <- params$nsigma
 
     if (is.null(data$p_tail)) {
-      data$p_tail = params$p_tail
+      data$p_tail <- params$p_tail
 
       if (all(params$p_upper_tail == 0)) {
-        data$p_upper_tail = params$p_tail / 2
+        data$p_upper_tail <- params$p_tail / 2
       }
       if (all(params$p_lower_tail == 0)) {
-        data$p_lower_tail = params$p_tail / 2
+        data$p_lower_tail <- params$p_tail / 2
       }
     }
 
     if (is.null(data$p_upper_tail)) {
-      data$p_upper_tail = params$p_upper_tail
+      data$p_upper_tail <- params$p_upper_tail
     }
 
     if (is.null(data$p_lower_tail)) {
-      data$p_lower_tail = params$p_lower_tail
+      data$p_lower_tail <- params$p_lower_tail
     }
 
     if (is.null(data$face_left)) {
-      data$face_left = params$face_left
+      data$face_left <- params$face_left
     }
 
     if (is.null(data$face_right)) {
-      data$face_right = params$face_right
+      data$face_right <- params$face_right
     }
 
     data$group <- 1:nrow(data)
@@ -75,17 +75,22 @@ StatNormalViolin <- ggplot2::ggproto(
     # polygons clipped with p_tail appear correctly.
 
     y <- c(seq(0, data$nsigma, by = 0.01),
-           seq(data$nsigma,-1 * data$nsigma, by = -0.01),
+           seq(data$nsigma, -1 * data$nsigma, by = -0.01),
            seq(-1 * data$nsigma, 0, by = 0.01)) *  data$sigma + data$mu
 
     # Which direction the violin should deviate?
-    signx <- c(rep(1 * data$face_right, length(seq(0, data$nsigma,0.01))),
-               rep(-1 * data$face_left, length(seq(data$nsigma, -1 * data$nsigma,-0.01))),
-               rep(1 * data$face_right, length(seq(-1 * data$nsigma, 0,0.01)))
+    signx <- c(rep(1 * data$face_right,
+                   length(seq(0, data$nsigma, 0.01))),
+               rep(-1 * data$face_left,
+                   length(seq(data$nsigma, -1 * data$nsigma, -0.01))),
+               rep(1 * data$face_right,
+                   length(seq(-1 * data$nsigma, 0, 0.01)))
     )
 
     # Set x position of violin
-    xpos <- 0.5 * signx * data$width * dnorm(y, data$mu,  data$sigma) / dnorm( data$mu,  data$mu,  data$sigma) +  data$x
+    maxwidth <- dnorm( data$mu,  data$mu,  data$sigma)
+    xwidth <- 0.5 * signx * data$width
+    xpos <-  xwidth * dnorm(y, data$mu,  data$sigma) / maxwidth  +  data$x
 
     # Make data.frame
     d <- data.frame(x = xpos,
@@ -303,4 +308,3 @@ geom_normalviolin <- function(
     )
   )
 }
-
