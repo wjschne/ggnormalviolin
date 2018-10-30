@@ -22,7 +22,7 @@ library(ggnormalviolin)
 
 # ggnormalviolin <img src="man/figures/logo.png" align="right" height=140/>
 
-[![CRAN status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin) [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin) [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build status](https://travis-ci.org/wjschne/ggnormalviolin.svg?branch=master)](https://travis-ci.org/wjschne/ggnormalviolin)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/wjschne/ggnormalviolin?branch=master&svg=true)](https://ci.appveyor.com/project/wjschne/ggnormalviolin)
 
