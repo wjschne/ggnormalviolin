@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggnormalviolin</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -116,8 +116,9 @@
     <pre class="usage"><span class='fu'>geom_normalviolin</span>(<span class='kw'>mapping</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nsigma</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>p_tail</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>p_lower_tail</span> <span class='kw'>=</span> <span class='no'>p_tail</span>/<span class='fl'>2</span>, <span class='kw'>p_upper_tail</span> <span class='kw'>=</span> <span class='no'>p_tail</span>/<span class='fl'>2</span>,
   <span class='kw'>tail_fill</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>tail_alpha</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>0.6</span>,
-  <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>lower_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>lower_limit</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>face_left</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>face_right</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.legend</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>inherit.aes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,6 +180,14 @@ will be used as the layer data.</p></td>
       <td><p>lower limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.</p></td>
     </tr>
     <tr>
+      <th>face_left</th>
+      <td><p>Display left half of violins. Defaults to `TRUE`</p></td>
+    </tr>
+    <tr>
+      <th>face_right</th>
+      <td><p>Display right half of violins. Defaults to `TRUE`</p></td>
+    </tr>
+    <tr>
       <th>na.rm</th>
       <td><p>If <code>FALSE</code>, the default, missing values are removed with
 a warning. If <code>TRUE</code>, missing values are silently removed.</p></td>
@@ -219,6 +228,8 @@ to the paired geom/stat.</p></td>
 <li><p>p_tail (2-tailed proportion of tails highlighted)</p></li>
 <li><p>p_upper_tail (proportion of upper tails highlighted)</p></li>
 <li><p>p_lower_tail (proportion of lower tails highlighted)</p></li>
+<li><p>face_left (display left half of violin?)</p></li>
+<li><p>face_right (display right half of violin?)</p></li>
 <li><p>color</p></li>
 <li><p>fill</p></li>
 <li><p>alpha (of fills)</p></li>
@@ -238,8 +249,8 @@ to the paired geom/stat.</p></td>
   <span class='kw'>Distribution_sd</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>15</span>, <span class='fl'>10</span>)
 )
 
-<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Distribution</span>)) +
-  <span class='fu'>geom_normalviolin</span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>Distribution_mean</span>,
+<span class='fu'><a href='ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>d</span>, <span class='fu'><a href='ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>Distribution</span>)) +
+  <span class='fu'>geom_normalviolin</span>(<span class='fu'><a href='ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>mu</span> <span class='kw'>=</span> <span class='no'>Distribution_mean</span>,
                       <span class='kw'>sigma</span> <span class='kw'>=</span> <span class='no'>Distribution_sd</span>))</div><div class='img'><img src='geom_normalviolin-1.svg' alt='' width='700' height='700' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -12,24 +12,44 @@ StatNormalViolin <- ggplot2::ggproto(
     nsigma = 4,
     p_tail = 0,
     p_lower_tail = 0,
-    p_upper_tail = 0),
+    p_upper_tail = 0,
+    face_left = TRUE,
+    face_right = TRUE),
   setup_data = function(data, params) {
-    if (is.null(data$width))
+    if (is.null(data$width)) {
       data$width = params$width
-    if (is.null(data$nsigma))
-      data$nsigma = params$nsigma
-    if (is.null(data$p_tail)) {
-      data$p_tail = params$p_tail
-      if (all(params$p_upper_tail == 0))
-        data$p_upper_tail = params$p_tail / 2
-      if (all(params$p_lower_tail == 0))
-        data$p_lower_tail = params$p_tail / 2
     }
 
-    if (is.null(data$p_upper_tail))
+
+    if (is.null(data$nsigma))
+      data$nsigma = params$nsigma
+
+    if (is.null(data$p_tail)) {
+      data$p_tail = params$p_tail
+
+      if (all(params$p_upper_tail == 0)) {
+        data$p_upper_tail = params$p_tail / 2
+      }
+      if (all(params$p_lower_tail == 0)) {
+        data$p_lower_tail = params$p_tail / 2
+      }
+    }
+
+    if (is.null(data$p_upper_tail)) {
       data$p_upper_tail = params$p_upper_tail
-    if (is.null(data$p_lower_tail))
+    }
+
+    if (is.null(data$p_lower_tail)) {
       data$p_lower_tail = params$p_lower_tail
+    }
+
+    if (is.null(data$face_left)) {
+      data$face_left = params$face_left
+    }
+
+    if (is.null(data$face_right)) {
+      data$face_right = params$face_right
+    }
 
     data$group <- 1:nrow(data)
 
@@ -44,7 +64,9 @@ StatNormalViolin <- ggplot2::ggproto(
     nsigma = 4,
     p_tail = 0,
     p_upper_tail = 0,
-    p_lower_tail = 0
+    p_lower_tail = 0,
+    face_left = TRUE,
+    face_right = TRUE
   ) {
     # The y values start at right side at 0, go up to the positive tail,
     # reverse to left side, go to the negative tail,
@@ -57,9 +79,9 @@ StatNormalViolin <- ggplot2::ggproto(
            seq(-1 * data$nsigma, 0, by = 0.01)) *  data$sigma + data$mu
 
     # Which direction the violin should deviate?
-    signx <- c(rep(1, length(seq(0, data$nsigma,0.01))),
-               rep(-1, length(seq(data$nsigma, -1 * data$nsigma,-0.01))),
-               rep(1, length(seq(-1 * data$nsigma, 0,0.01)))
+    signx <- c(rep(1 * data$face_right, length(seq(0, data$nsigma,0.01))),
+               rep(-1 * data$face_left, length(seq(data$nsigma, -1 * data$nsigma,-0.01))),
+               rep(1 * data$face_right, length(seq(-1 * data$nsigma, 0,0.01)))
     )
 
     # Set x position of violin
@@ -80,7 +102,6 @@ StatNormalViolin <- ggplot2::ggproto(
 
 #' GeomNormalViolin
 #'
-#' @format NULL
 #' @keywords internal
 #' @usage NULL
 #' @export
@@ -196,9 +217,12 @@ GeomNormalViolin <- ggplot2::ggproto(
 #' @param p_lower_tail The proportion of the distribution that should be highlighted in the lower tail. Defaults to half of `p_tail`.
 #' @param tail_fill fill color for tails
 #' @param tail_alpha alpha value for tails
+#' @param width Width of normal violin
 #' @param upper_limit upper limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.
 #' @param lower_limit lower limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.
-#' @param width Width of normal violin
+#' @param face_left Display left half of violins. Defaults to `TRUE`
+#' @param face_right Display right half of violins. Defaults to `TRUE`
+#'
 #' @section Aesthetics:
 #' \code{geom_normviolin} understands the following aesthetics (required aesthetics are in bold):
 #' \itemize{
@@ -210,6 +234,8 @@ GeomNormalViolin <- ggplot2::ggproto(
 #'   \item p_tail (2-tailed proportion of tails highlighted)
 #'   \item p_upper_tail (proportion of upper tails highlighted)
 #'   \item p_lower_tail (proportion of lower tails highlighted)
+#'   \item face_left (display left half of violin?)
+#'   \item face_right (display right half of violin?)
 #'   \item color
 #'   \item fill
 #'   \item alpha (of fills)
@@ -244,6 +270,8 @@ geom_normalviolin <- function(
   width = 0.6,
   upper_limit = NA,
   lower_limit = NA,
+  face_left = TRUE,
+  face_right = TRUE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
@@ -268,6 +296,8 @@ geom_normalviolin <- function(
       tail_alpha = tail_alpha,
       upper_limit = upper_limit,
       lower_limit = lower_limit,
+      face_left = face_left,
+      face_right = face_right,
       width = width,
       ...
     )

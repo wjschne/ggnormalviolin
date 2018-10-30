@@ -6,9 +6,11 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build
+status](https://travis-ci.org/wjschne/ggnormviolin.svg?branch=master)](https://travis-ci.org/wjschne/ggnormviolin)
 
-The ggnormalviolin package uses ggplot2 to create normal violin plots
-with specified means and standard deviations.
+A ggplot2 extension for creating normal violin plots with specified
+means and standard deviations.
 
 ## Installation
 
@@ -51,7 +53,7 @@ p <- ggplot(data = d,
   theme(legend.position = "none")
 
 
-# Make Plot
+# Add normal violins
 p + geom_normalviolin()
 ```
 
@@ -59,9 +61,9 @@ p + geom_normalviolin()
 
 ## Tail Highlighting
 
-Suppose we want to highlight the two tails of the distributions. Set the
-`p_tails` to specify the total area of the tails. Thus, if `p_tail` =
-0.05, each tail will represent the outermost 2.5% of the distributions
+Suppose you want to highlight the two tails of the distributions. Set
+the `p_tails` to specify the total area of the tails. Thus, if `p_tail`
+= 0.05, each tail will represent the outermost 2.5% of the distributions
 (i.e, 0.05 = 2 \&mult; 0.025).
 
 ``` r
@@ -70,7 +72,7 @@ p + geom_normalviolin(p_tail = 0.05)
 
 <img src="man/figures/README-example2-1.svg" width="100%" />
 
-Suppose we want to highly only the upper tails. Set \`p\_upper\_tail to
+Suppose you want to highly only the upper tails. Set \`p\_upper\_tail to
 the proportion desired.
 
 ``` r
@@ -79,7 +81,7 @@ p + geom_normalviolin(p_upper_tail = 0.05)
 
 <img src="man/figures/README-unnamed-chunk-3-1.svg" width="100%" />
 
-Analogously, we can highlight only the lower tails
+Analogously, you can highlight only the lower tails
 
 ``` r
 p + geom_normalviolin(p_lower_tail = 0.05)
@@ -105,26 +107,44 @@ p + geom_normalviolin(
 
 <img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
 
-## Violin Width
+## Direction of Violin
 
-We can set the width of each violin.
+If you want to omit the left or right side of the violins, you can set
+the `face_left` or `face_right` parameters to `FALSE`.
+
+``` r
+p + geom_normalviolin(face_left = FALSE)
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.svg" width="100%" />
+
+``` r
+
+p + geom_normalviolin(
+  face_right = FALSE, 
+  p_tail = 0.05)
+```
+
+<img src="man/figures/README-unnamed-chunk-6-2.svg" width="100%" />
+
+## Violin Width
 
 ``` r
 p + geom_normalviolin(width = 1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
 
 If you want the shape of the distribution to remain constant, map the
-width parameter to a multiple of the standard deviation.
+`width` parameter to a multiple of the standard deviation.
 
 ``` r
 p + geom_normalviolin(aes(width = dist_sd * 0.05))
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.svg" width="100%" />
 
-# Setting Limits
+## Setting Limits
 
 By default, the normal violins extend 4 standard deviations in both
 directions. Use the `nsigma` parameter to set a different value.
@@ -133,7 +153,7 @@ directions. Use the `nsigma` parameter to set a different value.
 p + geom_normalviolin(nsigma = 1.5)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.svg" width="100%" />
 
 If you set limits on the y scale, it is possible that some of the
 violins will be distorted or cut in pieces.
@@ -144,7 +164,7 @@ p +
   ylim(50,140)
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.svg" width="100%" />
 
 This occurs because data outside the limits is discarded, breaking up
 the polygons that compose the violins into smaller pieces. To prevent
@@ -158,7 +178,18 @@ p +
   ylim(50,140)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />
+
+Alternately, you can set the limits in `ggplot2::coord_cartesian`, which
+will zoom the plot instead of discarding the data.
+
+``` r
+p + 
+  geom_normalviolin() +
+  coord_cartesian(ylim = c(50, 140)) 
+```
+
+<img src="man/figures/README-unnamed-chunk-12-1.svg" width="100%" />
 
 ## Code of Conduct
 

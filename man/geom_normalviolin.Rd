@@ -7,8 +7,9 @@
 geom_normalviolin(mapping = NULL, data = NULL, nsigma = 4,
   p_tail = 0, p_lower_tail = p_tail/2, p_upper_tail = p_tail/2,
   tail_fill = "black", tail_alpha = 0.4, width = 0.6,
-  upper_limit = NA, lower_limit = NA, na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE, ...)
+  upper_limit = NA, lower_limit = NA, face_left = TRUE,
+  face_right = TRUE, na.rm = FALSE, show.legend = NA,
+  inherit.aes = TRUE, ...)
 }
 \arguments{
 \item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
@@ -48,6 +49,10 @@ will be used as the layer data.}
 
 \item{lower_limit}{lower limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.}
 
+\item{face_left}{Display left half of violins. Defaults to `TRUE`}
+
+\item{face_right}{Display right half of violins. Defaults to `TRUE`}
+
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
@@ -82,6 +87,8 @@ Creates normal violins with specified means and standard deviations
   \item p_tail (2-tailed proportion of tails highlighted)
   \item p_upper_tail (proportion of upper tails highlighted)
   \item p_lower_tail (proportion of lower tails highlighted)
+  \item face_left (display left half of violin?)
+  \item face_right (display right half of violin?)
   \item color
   \item fill
   \item alpha (of fills)

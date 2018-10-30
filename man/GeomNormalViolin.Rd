@@ -4,6 +4,7 @@
 \name{GeomNormalViolin}
 \alias{GeomNormalViolin}
 \title{GeomNormalViolin}
+\format{An object of class \code{GeomNormalViolin} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 5.}
 \description{
 GeomNormalViolin
 }
