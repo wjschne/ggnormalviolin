@@ -74,7 +74,7 @@ p + geom_normalviolin(p_tail = 0.05)
 
 <img src="man/figures/README-example2-1.svg" width="100%" />
 
-Suppose you want to highly only the upper tails. Set \`p\_upper\_tail to
+Suppose you want to highly only the upper tails. Set `p_upper_tail` to
 the proportion desired.
 
 ``` r
@@ -83,7 +83,8 @@ p + geom_normalviolin(p_upper_tail = 0.05)
 
 <img src="man/figures/README-unnamed-chunk-3-1.svg" width="100%" />
 
-Analogously, you can highlight only the lower tails
+Analogously, you can highlight only the lower tails by setting the
+`p_lower_tail` parameter.
 
 ``` r
 p + geom_normalviolin(p_lower_tail = 0.05)
@@ -94,7 +95,7 @@ p + geom_normalviolin(p_lower_tail = 0.05)
 The defaults for highlighting is accomplished by selecting a subset of
 the whole distribution, setting `tail_fill` to black, and making the
 then making the black fill transparent by setting `tail_alpha` = 0.4.
-Setting these values to other colors and levels of tranparency can
+Setting these values to other colors and levels of transparency can
 dramatically change the look of the plot.
 
 ``` r
@@ -130,6 +131,8 @@ p + geom_normalviolin(
 <img src="man/figures/README-unnamed-chunk-6-2.svg" width="100%" />
 
 ## Violin Width
+
+You can set the `width` of the violin to any size desired.
 
 ``` r
 p + geom_normalviolin(width = 1)
