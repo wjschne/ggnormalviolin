@@ -13,5 +13,4 @@
 
 ## Addressing concerns from previous submission attempt
 
-* Changed version number from 0.0.0.9000 to 0.0.1
-* Put 'ggplot2' in single quotes in both Title and Description fields
+* Fixed typo in title
