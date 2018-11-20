@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A 'ggplot2'Extension to Make Normal Violin Plots • ggnormalviolin</title>
+<title>A 'ggplot2' Extension to Make Normal Violin Plots • ggnormalviolin</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="A 'ggplot2'Extension to Make Normal Violin Plots">
+<script src="pkgdown.js"></script><meta property="og:title" content="A 'ggplot2' Extension to Make Normal Violin Plots">
 <meta property="og:description" content="Uses 'ggplot2' to create normally distributed
     violin plots with specified means and standard deviations. This
     function can be useful in showing hypothetically normal distributions
@@ -122,13 +122,13 @@
 <p>Suppose you want to highlight the two tails of the distributions. Set the <code>p_tails</code> to specify the total area of the tails. Thus, if <code>p_tail</code> = 0.05, each tail will represent the outermost 2.5% of the distributions (i.e, 0.05 = 2 &amp;mult; 0.025).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example2-1.svg" width="100%"></p>
-<p>Suppose you want to highly only the upper tails. Set `p_upper_tail to the proportion desired.</p>
+<p>Suppose you want to highly only the upper tails. Set <code>p_upper_tail</code> to the proportion desired.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_upper_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-3-1.svg" width="100%"></p>
-<p>Analogously, you can highlight only the lower tails</p>
+<p>Analogously, you can highlight only the lower tails by setting the <code>p_lower_tail</code> parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_lower_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.svg" width="100%"></p>
-<p>The defaults for highlighting is accomplished by selecting a subset of the whole distribution, setting <code>tail_fill</code> to black, and making the then making the black fill transparent by setting <code>tail_alpha</code> = 0.4. Setting these values to other colors and levels of tranparency can dramatically change the look of the plot.</p>
+<p>The defaults for highlighting is accomplished by selecting a subset of the whole distribution, setting <code>tail_fill</code> to black, and making the then making the black fill transparent by setting <code>tail_alpha</code> = 0.4. Setting these values to other colors and levels of transparency can dramatically change the look of the plot.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">  <span class="dt">p_tail =</span> <span class="fl">0.05</span>, </a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">  <span class="dt">tail_fill =</span> <span class="st">"white"</span>, </a>
@@ -153,6 +153,7 @@
 <div id="violin-width" class="section level2">
 <h2 class="hasAnchor">
 <a href="#violin-width" class="anchor"></a>Violin Width</h2>
+<p>You can set the <code>width</code> of the violin to any size desired.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">width =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.svg" width="100%"></p>
 <p>If you want the shape of the distribution to remain constant, map the <code>width</code> parameter to a multiple of the standard deviation.</p>

@@ -1,5 +1,5 @@
 Package: ggnormalviolin
-Title: A 'ggplot2'Extension to Make Normal Violin Plots
+Title: A 'ggplot2' Extension to Make Normal Violin Plots
 Version: 0.1.0
 Authors@R: 
     person(given = "W. Joel",
@@ -25,4 +25,4 @@ Suggests:
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
