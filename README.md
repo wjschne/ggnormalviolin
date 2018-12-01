@@ -16,6 +16,19 @@ means and standard deviations.
 
 ## Installation
 
+You can either install ggnormalviolin from CRAN or install the
+development version of ggnormalviolin from github.
+
+### Option 1: Install the most recent stable release from CRAN
+
+You can install ggnormalviolin from CRAN by running this code:
+
+``` r
+install.packages("ggnormalviolin")
+```
+
+### Option 2: Install the development version from GitHub
+
 To install the development version of ggnormalviolin, you need to check
 if devtools is installed. If not, run this:
 
@@ -81,7 +94,7 @@ the proportion desired.
 p + geom_normalviolin(p_upper_tail = 0.05)
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-4-1.svg" width="100%" />
 
 Analogously, you can highlight only the lower tails by setting the
 `p_lower_tail` parameter.
@@ -90,7 +103,7 @@ Analogously, you can highlight only the lower tails by setting the
 p + geom_normalviolin(p_lower_tail = 0.05)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
 
 The defaults for highlighting is accomplished by selecting a subset of
 the whole distribution, setting `tail_fill` to black, and making the
@@ -108,7 +121,7 @@ p + geom_normalviolin(
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.svg" width="100%" />
 
 ## Direction of Violin
 
@@ -119,7 +132,7 @@ the `face_left` or `face_right` parameters to `FALSE`.
 p + geom_normalviolin(face_left = FALSE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
 
 ``` r
 
@@ -128,7 +141,7 @@ p + geom_normalviolin(
   p_tail = 0.05)
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-2.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-7-2.svg" width="100%" />
 
 ## Violin Width
 
@@ -138,7 +151,7 @@ You can set the `width` of the violin to any size desired.
 p + geom_normalviolin(width = 1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-8-1.svg" width="100%" />
 
 If you want the shape of the distribution to remain constant, map the
 `width` parameter to a multiple of the standard deviation.
@@ -147,7 +160,7 @@ If you want the shape of the distribution to remain constant, map the
 p + geom_normalviolin(aes(width = dist_sd * 0.05))
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.svg" width="100%" />
 
 ## Setting Limits
 
@@ -158,7 +171,7 @@ directions. Use the `nsigma` parameter to set a different value.
 p + geom_normalviolin(nsigma = 1.5)
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-10-1.svg" width="100%" />
 
 If you set limits on the y scale, it is possible that some of the
 violins will be distorted or cut in pieces.
@@ -169,7 +182,7 @@ p +
   ylim(50,140)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />
 
 This occurs because data outside the limits is discarded, breaking up
 the polygons that compose the violins into smaller pieces. To prevent
@@ -183,7 +196,7 @@ p +
   ylim(50,140)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-12-1.svg" width="100%" />
 
 Alternately, you can set the limits in `ggplot2::coord_cartesian`, which
 will zoom the plot instead of discarding the data.
@@ -194,7 +207,7 @@ p +
   coord_cartesian(ylim = c(50, 140)) 
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-13-1.svg" width="100%" />
 
 ## Code of Conduct
 

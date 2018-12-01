@@ -31,15 +31,27 @@ A ggplot2 extension for creating normal violin plots with specified means and st
 
 ## Installation 
 
-To install the development version of ggnormalviolin, you need to check
-if devtools is installed. If not, run this:
+You can either install ggnormalviolin from CRAN or install the development version of ggnormalviolin from github.
+
+### Option 1: Install the most recent stable release from CRAN
+
+You can install ggnormalviolin from CRAN by running this code:
+
+
+```{r, eval = FALSE}
+install.packages("ggnormalviolin")
+```
+
+
+### Option 2: Install the development version from GitHub
+
+To install the development version of ggnormalviolin, you need to check if devtools is installed. If not, run this:
 
 ```{r, eval = FALSE}
 install.packages("devtools")
 ```
 
-Once you are sure you have devtools installed, you can install the
-development version of ggnormalviolin from GitHub by running this code:
+Once you are sure you have devtools installed, you can install the development version of ggnormalviolin from GitHub by running this code:
 
 ```{r, eval = FALSE}
 devtools::install_github("wjschne/ggnormalviolin")
