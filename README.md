@@ -106,8 +106,8 @@ p + geom_normalviolin(p_lower_tail = 0.05)
 <img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
 
 The defaults for highlighting is accomplished by selecting a subset of
-the whole distribution, setting `tail_fill` to black, and making the
-then making the black fill transparent by setting `tail_alpha` = 0.4.
+the whole distribution, setting `tail_fill` to black, and then making
+the making the black fill transparent by setting `tail_alpha` = 0.4.
 Setting these values to other colors and levels of transparency can
 dramatically change the look of the plot.
 
