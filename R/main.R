@@ -148,7 +148,7 @@ GeomNormalViolin <- ggplot2::ggproto(
                       fill = scales::alpha(d_param$fill,
                                            d_param$alpha),
                       lty = d_param$linetype,
-                      lwd = d_param$size * .pt)
+                      lwd = d_param$size *  ggplot2::.pt)
     )
 
     # Filter data for upper tail
@@ -171,7 +171,7 @@ GeomNormalViolin <- ggplot2::ggproto(
           fill = scales::alpha(d_param$tail_fill,
                                d_param$tail_alpha),
           lty = d_param$linetype,
-          lwd = d_param$size * .pt
+          lwd = d_param$size *  ggplot2::.pt
 
         )
       )
@@ -199,7 +199,7 @@ GeomNormalViolin <- ggplot2::ggproto(
           fill = scales::alpha(d_param$tail_fill,
                                d_param$tail_alpha),
           lty = d_param$linetype,
-          lwd = d_param$size * .pt
+          lwd = d_param$size *  ggplot2::.pt
         )
       )
     } else {

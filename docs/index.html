@@ -22,7 +22,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggnormalviolin</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -70,7 +70,11 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
+    
+
+    
+    
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="ggnormalviolin" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
@@ -86,108 +90,108 @@
 <h3 class="hasAnchor">
 <a href="#option-1-install-the-most-recent-stable-release-from-cran" class="anchor"></a>Option 1: Install the most recent stable release from CRAN</h3>
 <p>You can install ggnormalviolin from CRAN by running this code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"ggnormalviolin"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"ggnormalviolin"</span>)</a></code></pre></div>
 </div>
 <div id="option-2-install-the-development-version-from-github" class="section level3">
 <h3 class="hasAnchor">
 <a href="#option-2-install-the-development-version-from-github" class="anchor"></a>Option 2: Install the development version from GitHub</h3>
 <p>To install the development version of ggnormalviolin, you need to check if devtools is installed. If not, run this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"devtools"</span>)</a></code></pre></div>
 <p>Once you are sure you have devtools installed, you can install the development version of ggnormalviolin from GitHub by running this code:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"wjschne/ggnormalviolin"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"wjschne/ggnormalviolin"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-ggnormalviolin" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-ggnormalviolin" class="anchor"></a>Using ggnormalviolin</h2>
 <p>Suppose there are 4 hypothetically normal distributions with specific means and standard deviations. They can be plotted like so:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggnormalviolin)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># Make data</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">d &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">dist =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">dist_mean =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">110</span>, <span class="dv">130</span>),</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">dist_sd =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">)</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co"># Make base plot</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> d, </a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">            <span class="kw">aes</span>(<span class="dt">x =</span> dist,</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">                <span class="dt">mu =</span> dist_mean,</a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">                <span class="dt">sigma =</span> dist_sd,</a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">                <span class="dt">fill =</span> dist)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co"># Add normal violins</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggnormalviolin)</a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co"># Make data</span></a>
+<a class="sourceLine" id="cb4-5" title="5">d &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(</a>
+<a class="sourceLine" id="cb4-6" title="6">  <span class="dt">dist =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</a>
+<a class="sourceLine" id="cb4-7" title="7">  <span class="dt">dist_mean =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">110</span>, <span class="dv">130</span>),</a>
+<a class="sourceLine" id="cb4-8" title="8">  <span class="dt">dist_sd =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb4-9" title="9">)</a>
+<a class="sourceLine" id="cb4-10" title="10"></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co"># Make base plot</span></a>
+<a class="sourceLine" id="cb4-12" title="12">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> d, </a>
+<a class="sourceLine" id="cb4-13" title="13">            <span class="kw">aes</span>(<span class="dt">x =</span> dist,</a>
+<a class="sourceLine" id="cb4-14" title="14">                <span class="dt">mu =</span> dist_mean,</a>
+<a class="sourceLine" id="cb4-15" title="15">                <span class="dt">sigma =</span> dist_sd,</a>
+<a class="sourceLine" id="cb4-16" title="16">                <span class="dt">fill =</span> dist)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>)</a>
+<a class="sourceLine" id="cb4-18" title="18"></a>
+<a class="sourceLine" id="cb4-19" title="19"></a>
+<a class="sourceLine" id="cb4-20" title="20"><span class="co"># Add normal violins</span></a>
+<a class="sourceLine" id="cb4-21" title="21">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>()</a></code></pre></div>
 <p><img src="reference/figures/README-example-1.svg" width="100%"></p>
 </div>
 <div id="tail-highlighting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tail-highlighting" class="anchor"></a>Tail Highlighting</h2>
 <p>Suppose you want to highlight the two tails of the distributions. Set the <code>p_tails</code> to specify the total area of the tails. Thus, if <code>p_tail</code> = 0.05, each tail will represent the outermost 2.5% of the distributions (i.e, 0.05 = 2 &amp;mult; 0.025).</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-example2-1.svg" width="100%"></p>
 <p>Suppose you want to highly only the upper tails. Set <code>p_upper_tail</code> to the proportion desired.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_upper_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_upper_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.svg" width="100%"></p>
 <p>Analogously, you can highlight only the lower tails by setting the <code>p_lower_tail</code> parameter.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_lower_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">p_lower_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-5-1.svg" width="100%"></p>
 <p>The defaults for highlighting is accomplished by selecting a subset of the whole distribution, setting <code>tail_fill</code> to black, and then making the black fill transparent by setting <code>tail_alpha</code> = 0.4. Setting these values to other colors and levels of transparency can dramatically change the look of the plot.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="dt">p_tail =</span> <span class="fl">0.05</span>, </a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">tail_fill =</span> <span class="st">"white"</span>, </a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">tail_alpha =</span> <span class="fl">0.8</span>,</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">color =</span> <span class="st">"gray20"</span>,</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">size =</span> <span class="fl">0.1</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7">  )</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(</a>
+<a class="sourceLine" id="cb8-2" title="2">  <span class="dt">p_tail =</span> <span class="fl">0.05</span>, </a>
+<a class="sourceLine" id="cb8-3" title="3">  <span class="dt">tail_fill =</span> <span class="st">"white"</span>, </a>
+<a class="sourceLine" id="cb8-4" title="4">  <span class="dt">tail_alpha =</span> <span class="fl">0.8</span>,</a>
+<a class="sourceLine" id="cb8-5" title="5">  <span class="dt">color =</span> <span class="st">"gray20"</span>,</a>
+<a class="sourceLine" id="cb8-6" title="6">  <span class="dt">size =</span> <span class="fl">0.1</span></a>
+<a class="sourceLine" id="cb8-7" title="7">  )</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-6-1.svg" width="100%"></p>
 </div>
 <div id="direction-of-violin" class="section level2">
 <h2 class="hasAnchor">
 <a href="#direction-of-violin" class="anchor"></a>Direction of Violin</h2>
 <p>If you want to omit the left or right side of the violins, you can set the <code>face_left</code> or <code>face_right</code> parameters to <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">face_left =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">face_left =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-1.svg" width="100%"></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="dt">face_right =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">p_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"></a>
+<a class="sourceLine" id="cb10-2" title="2">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(</a>
+<a class="sourceLine" id="cb10-3" title="3">  <span class="dt">face_right =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb10-4" title="4">  <span class="dt">p_tail =</span> <span class="fl">0.05</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-7-2.svg" width="100%"></p>
 </div>
 <div id="violin-width" class="section level2">
 <h2 class="hasAnchor">
 <a href="#violin-width" class="anchor"></a>Violin Width</h2>
 <p>You can set the <code>width</code> of the violin to any size desired.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">width =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">width =</span> <span class="dv">1</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.svg" width="100%"></p>
 <p>If you want the shape of the distribution to remain constant, map the <code>width</code> parameter to a multiple of the standard deviation.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="kw">aes</span>(<span class="dt">width =</span> dist_sd <span class="op">*</span><span class="st"> </span><span class="fl">0.05</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="kw">aes</span>(<span class="dt">width =</span> dist_sd <span class="op">*</span><span class="st"> </span><span class="fl">0.05</span>))</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-9-1.svg" width="100%"></p>
 </div>
 <div id="setting-limits" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setting-limits" class="anchor"></a>Setting Limits</h2>
 <p>By default, the normal violins extend 4 standard deviations in both directions. Use the <code>nsigma</code> parameter to set a different value.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">nsigma =</span> <span class="fl">1.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">nsigma =</span> <span class="fl">1.5</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-10-1.svg" width="100%"></p>
 <p>If you set limits on the y scale, it is possible that some of the violins will be distorted or cut in pieces.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot.window">ylim</a></span>(<span class="dv">50</span>,<span class="dv">140</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">p <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot.window">ylim</a></span>(<span class="dv">50</span>,<span class="dv">140</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-11-1.svg" width="100%"></p>
 <p>This occurs because data outside the limits is discarded, breaking up the polygons that compose the violins into smaller pieces. To prevent such behavior, set the <code>upper_limit</code> and <code>lower_limit</code> parameters equal to the same limits you have specified for the y scale (or any other values you wish).</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">lower_limit =</span> <span class="dv">50</span>, <span class="dt">upper_limit =</span> <span class="dv">140</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot.window">ylim</a></span>(<span class="dv">50</span>,<span class="dv">140</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">p <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>(<span class="dt">lower_limit =</span> <span class="dv">50</span>, <span class="dt">upper_limit =</span> <span class="dv">140</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot.window">ylim</a></span>(<span class="dv">50</span>,<span class="dv">140</span>)</a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-12-1.svg" width="100%"></p>
-<p>Alternately, you can set the limits in <code><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html">ggplot2::coord_cartesian</a></code>, which will zoom the plot instead of discarding the data.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">50</span>, <span class="dv">140</span>)) </a></code></pre></div>
+<p>Alternately, you can set the limits in <code><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_cartesian">ggplot2::coord_cartesian</a></code>, which will zoom the plot instead of discarding the data.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">p <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span><span class="kw"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">50</span>, <span class="dv">140</span>)) </a></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-13-1.svg" width="100%"></p>
 </div>
 <div id="code-of-conduct" class="section level2">
@@ -198,7 +202,7 @@
 </div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -224,7 +228,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
+      <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=ggnormalviolin"><img src="https://www.r-pkg.org/badges/version/ggnormalviolin" alt="CRAN status"></a></li>
@@ -234,6 +238,7 @@
 </ul>
 </div>
 </div>
+
 </div>
 
 
@@ -242,7 +247,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
 </div>
