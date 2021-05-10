@@ -210,12 +210,12 @@ GeomNormalViolin <- ggplot2::ggproto(
 )
 
 
-
-
 #' Creates normal violins with specified means and standard deviations
 #'
 #' @inheritParams  ggplot2::layer
 #' @inheritParams ggplot2::geom_polygon
+#' @param mu A vector of means
+#' @param sigma A vector of standard deviations
 #' @param nsigma The number of standard deviations each violin should extend
 #' @param p_tail The 2-tailed proportion that should be highlighted.
 #' Can be overridden with p_lower_tail and/or p_upper_tail
@@ -254,24 +254,12 @@ GeomNormalViolin <- ggplot2::ggproto(
 #'   \item linetype
 #'   \item size (of lines)
 #' }
-
-#' @examples
-#' library(ggplot2)
-#' library(ggnormalviolin)
-#'
-#' d <- data.frame(
-#'   Distribution = c("A", "B"),
-#'   Distribution_mean = c(80, 90),
-#'   Distribution_sd = c(15, 10)
-#' )
-#'
-#' ggplot(data = d, aes(x = Distribution)) +
-#'   geom_normalviolin(aes(mu = Distribution_mean,
-#'                       sigma = Distribution_sd))
 #' @export
 geom_normalviolin <- function(
   mapping = NULL,
   data = NULL,
+  mu = NULL,
+  sigma = NULL,
   nsigma = 4,
   p_tail = 0,
   p_lower_tail = p_tail / 2,
@@ -314,3 +302,4 @@ geom_normalviolin <- function(
     )
   )
 }
+

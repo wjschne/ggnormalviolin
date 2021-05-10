@@ -12,3 +12,4 @@
 ^\.Rproj\.user$
 ^\.Rproj\.user*
 ^logo.png$
+^pkgdown$

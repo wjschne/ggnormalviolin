@@ -7,6 +7,8 @@
 geom_normalviolin(
   mapping = NULL,
   data = NULL,
+  mu = NULL,
+  sigma = NULL,
   nsigma = 4,
   p_tail = 0,
   p_lower_tail = p_tail/2,
@@ -44,6 +46,10 @@ A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
+
+\item{mu}{A vector of means}
+
+\item{sigma}{A vector of standard deviations}
 
 \item{nsigma}{The number of standard deviations each violin should extend}
 
@@ -118,17 +124,3 @@ Creates normal violins with specified means and standard deviations
 }
 }
 
-\examples{
-library(ggplot2)
-library(ggnormalviolin)
-
-d <- data.frame(
-  Distribution = c("A", "B"),
-  Distribution_mean = c(80, 90),
-  Distribution_sd = c(15, 10)
-)
-
-ggplot(data = d, aes(x = Distribution)) +
-  geom_normalviolin(aes(mu = Distribution_mean,
-                      sigma = Distribution_sd))
-}
