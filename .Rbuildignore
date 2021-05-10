@@ -12,4 +12,5 @@
 ^\.Rproj\.user$
 ^\.Rproj\.user*
 ^logo.png$
+^logo.svg$
 ^pkgdown$
