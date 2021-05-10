@@ -51,7 +51,7 @@ StatNormalViolin <- ggplot2::ggproto(
       data$face_right <- params$face_right
     }
 
-    data$group <- 1:nrow(data)
+    data$group <- seq_len(nrow(data))
 
     data
   },
@@ -217,19 +217,25 @@ GeomNormalViolin <- ggplot2::ggproto(
 #' @inheritParams  ggplot2::layer
 #' @inheritParams ggplot2::geom_polygon
 #' @param nsigma The number of standard deviations each violin should extend
-#' @param p_tail The 2-tailed proportion that should be highlighted. Can be overridden with p_lower_tail and/or p_upper_tail
-#' @param p_upper_tail The proportion of the distribution that should be highlighted in the upper tail. Defaults to half of `p_tail`.
-#' @param p_lower_tail The proportion of the distribution that should be highlighted in the lower tail. Defaults to half of `p_tail`.
+#' @param p_tail The 2-tailed proportion that should be highlighted.
+#' Can be overridden with p_lower_tail and/or p_upper_tail
+#' @param p_upper_tail The proportion of the distribution that should be
+#' highlighted in the upper tail. Defaults to half of `p_tail`.
+#' @param p_lower_tail The proportion of the distribution that should be
+#' highlighted in the lower tail. Defaults to half of `p_tail`.
 #' @param tail_fill fill color for tails
 #' @param tail_alpha alpha value for tails
 #' @param width Width of normal violin
-#' @param upper_limit upper limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.
-#' @param lower_limit lower limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.
+#' @param upper_limit upper limit for polygons. Needed in case setting
+#' limits in scale_y_continuous or ylim distorts the polygons.
+#' @param lower_limit lower limit for polygons. Needed in case setting
+#' limits in scale_y_continuous or ylim distorts the polygons.
 #' @param face_left Display left half of violins. Defaults to `TRUE`
 #' @param face_right Display right half of violins. Defaults to `TRUE`
 #'
 #' @section Aesthetics:
-#' \code{geom_normviolin} understands the following aesthetics (required aesthetics are in bold):
+#' \code{geom_normviolin} understands the following aesthetics
+#' (required aesthetics are in bold):
 #' \itemize{
 #'   \item \strong{x}
 #'   \item \strong{mu} (mean of the normal distribution)

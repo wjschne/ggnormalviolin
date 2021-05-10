@@ -1,6 +1,6 @@
 Package: ggnormalviolin
 Title: A 'ggplot2' Extension to Make Normal Violin Plots
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
     person(given = "W. Joel",
            family = "Schneider",
@@ -21,8 +21,9 @@ Imports:
     magrittr,
     scales
 Suggests: 
-    spelling
+    spelling,
+    testthat
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

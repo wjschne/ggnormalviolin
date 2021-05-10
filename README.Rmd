@@ -18,18 +18,17 @@ library(ggplot2)
 library(ggnormalviolin)
 ```
 
+# ggnormalviolin <img src="man/figures/logo.png" align="right" height="140/"/>
 
-
-# ggnormalviolin <img src="man/figures/logo.png" align="right" height=140/>
-
-[![CRAN status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin) [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis build status](https://travis-ci.org/wjschne/ggnormalviolin.svg?branch=master)](https://travis-ci.org/wjschne/ggnormalviolin)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/wjschne/ggnormalviolin?branch=master&svg=true)](https://ci.appveyor.com/project/wjschne/ggnormalviolin)
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing) 
+  [![R-CMD-check](https://github.com/wjschne/ggnormviolin/workflows/R-CMD-check/badge.svg)](https://github.com/wjschne/ggnormviolin/actions)
+  <!-- badges: end -->
 
 
 A ggplot2 extension for creating normal violin plots with specified means and standard deviations.
 
-## Installation 
+## Installation
 
 You can either install ggnormalviolin from CRAN or install the development version of ggnormalviolin from github.
 
@@ -37,11 +36,9 @@ You can either install ggnormalviolin from CRAN or install the development versi
 
 You can install ggnormalviolin from CRAN by running this code:
 
-
 ```{r, eval = FALSE}
 install.packages("ggnormalviolin")
 ```
-
 
 ### Option 2: Install the development version from GitHub
 
@@ -89,12 +86,11 @@ p + geom_normalviolin()
 
 Suppose you want to highlight the two tails of the distributions. Set the `p_tails` to specify the total area of the tails. Thus, if `p_tail` = 0.05, each tail will represent the outermost 2.5% of the distributions (i.e, 0.05 = 2 &mult; 0.025).
 
-
 ```{r example2}
 p + geom_normalviolin(p_tail = 0.05)
 ```
 
-Suppose you want to highly only the upper tails. Set `p_upper_tail` to the proportion desired. 
+Suppose you want to highly only the upper tails. Set `p_upper_tail` to the proportion desired.
 
 ```{r}
 p + geom_normalviolin(p_upper_tail = 0.05)
@@ -130,7 +126,6 @@ p + geom_normalviolin(
   p_tail = 0.05)
 
 ```
-
 
 ## Violin Width
 
@@ -181,4 +176,4 @@ p +
 
 ## Code of Conduct
 
-Please note that the 'ggnormalviolin project' is released with a [Contributor Code of Conduct](https://github.com/wjschne/ggnormalviolin/blob/master/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+Please note that the ggnormalviolin project is released with a [Contributor Code of Conduct](https://github.com/wjschne/ggnormalviolin/blob/master/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.

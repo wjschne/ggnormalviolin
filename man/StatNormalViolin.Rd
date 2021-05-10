@@ -4,7 +4,9 @@
 \name{StatNormalViolin}
 \alias{StatNormalViolin}
 \title{StatNormViolin}
-\format{An object of class \code{StatNormalViolin} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 5.}
+\format{
+An object of class \code{StatNormalViolin} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 5.
+}
 \description{
 StatNormViolin
 }

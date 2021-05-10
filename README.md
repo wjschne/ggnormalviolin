@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggnormalviolin <img src="man/figures/logo.png" align="right" height=140/>
+# ggnormalviolin <img src="man/figures/logo.png" align="right" height="140/"/>
+
+<!-- badges: start -->
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis build
-status](https://travis-ci.org/wjschne/ggnormalviolin.svg?branch=master)](https://travis-ci.org/wjschne/ggnormalviolin)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/wjschne/ggnormalviolin?branch=master&svg=true)](https://ci.appveyor.com/project/wjschne/ggnormalviolin)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![R-CMD-check](https://github.com/wjschne/ggnormviolin/workflows/R-CMD-check/badge.svg)](https://github.com/wjschne/ggnormviolin/actions)
+<!-- badges: end -->
 
 A ggplot2 extension for creating normal violin plots with specified
 means and standard deviations.
@@ -79,7 +79,7 @@ p + geom_normalviolin()
 Suppose you want to highlight the two tails of the distributions. Set
 the `p_tails` to specify the total area of the tails. Thus, if `p_tail`
 = 0.05, each tail will represent the outermost 2.5% of the distributions
-(i.e, 0.05 = 2 \&mult; 0.025).
+(i.e, 0.05 = 2 &mult; 0.025).
 
 ``` r
 p + geom_normalviolin(p_tail = 0.05)
@@ -135,7 +135,6 @@ p + geom_normalviolin(face_left = FALSE)
 <img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
 
 ``` r
-
 p + geom_normalviolin(
   face_right = FALSE, 
   p_tail = 0.05)
@@ -211,7 +210,7 @@ p +
 
 ## Code of Conduct
 
-Please note that the ‘ggnormalviolin project’ is released with a
+Please note that the ggnormalviolin project is released with a
 [Contributor Code of
 Conduct](https://github.com/wjschne/ggnormalviolin/blob/master/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.

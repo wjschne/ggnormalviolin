@@ -4,16 +4,29 @@
 \alias{geom_normalviolin}
 \title{Creates normal violins with specified means and standard deviations}
 \usage{
-geom_normalviolin(mapping = NULL, data = NULL, nsigma = 4,
-  p_tail = 0, p_lower_tail = p_tail/2, p_upper_tail = p_tail/2,
-  tail_fill = "black", tail_alpha = 0.4, width = 0.6,
-  upper_limit = NA, lower_limit = NA, face_left = TRUE,
-  face_right = TRUE, na.rm = FALSE, show.legend = NA,
-  inherit.aes = TRUE, ...)
+geom_normalviolin(
+  mapping = NULL,
+  data = NULL,
+  nsigma = 4,
+  p_tail = 0,
+  p_lower_tail = p_tail/2,
+  p_upper_tail = p_tail/2,
+  tail_fill = "black",
+  tail_alpha = 0.4,
+  width = 0.6,
+  upper_limit = NA,
+  lower_limit = NA,
+  face_left = TRUE,
+  face_right = TRUE,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  ...
+)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link[=aes]{aes()}} or
-\code{\link[=aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
+\code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply \code{mapping} if there is no plot mapping.}
 
@@ -21,11 +34,11 @@ plot. You must supply \code{mapping} if there is no plot mapping.}
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
-data as specified in the call to \code{\link[=ggplot]{ggplot()}}.
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
 
 A \code{data.frame}, or other object, will override the plot
 data. All objects will be fortified to produce a data frame. See
-\code{\link[=fortify]{fortify()}} for which variables will be created.
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
 
 A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
@@ -34,11 +47,14 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{nsigma}{The number of standard deviations each violin should extend}
 
-\item{p_tail}{The 2-tailed proportion that should be highlighted. Can be overridden with p_lower_tail and/or p_upper_tail}
+\item{p_tail}{The 2-tailed proportion that should be highlighted.
+Can be overridden with p_lower_tail and/or p_upper_tail}
 
-\item{p_lower_tail}{The proportion of the distribution that should be highlighted in the lower tail. Defaults to half of `p_tail`.}
+\item{p_lower_tail}{The proportion of the distribution that should be
+highlighted in the lower tail. Defaults to half of `p_tail`.}
 
-\item{p_upper_tail}{The proportion of the distribution that should be highlighted in the upper tail. Defaults to half of `p_tail`.}
+\item{p_upper_tail}{The proportion of the distribution that should be
+highlighted in the upper tail. Defaults to half of `p_tail`.}
 
 \item{tail_fill}{fill color for tails}
 
@@ -46,9 +62,11 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{width}{Width of normal violin}
 
-\item{upper_limit}{upper limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.}
+\item{upper_limit}{upper limit for polygons. Needed in case setting
+limits in scale_y_continuous or ylim distorts the polygons.}
 
-\item{lower_limit}{lower limit for polygons. Needed in case setting limits in scale_y_continuous or ylim distorts the polygons.}
+\item{lower_limit}{lower limit for polygons. Needed in case setting
+limits in scale_y_continuous or ylim distorts the polygons.}
 
 \item{face_left}{Display left half of violins. Defaults to `TRUE`}
 
@@ -66,9 +84,9 @@ display.}
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. \code{\link[=borders]{borders()}}.}
+the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
-\item{...}{Other arguments passed on to \code{\link[=layer]{layer()}}. These are
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
@@ -78,7 +96,8 @@ Creates normal violins with specified means and standard deviations
 }
 \section{Aesthetics}{
 
-\code{geom_normviolin} understands the following aesthetics (required aesthetics are in bold):
+\code{geom_normviolin} understands the following aesthetics
+(required aesthetics are in bold):
 \itemize{
   \item \strong{x}
   \item \strong{mu} (mean of the normal distribution)
