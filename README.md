@@ -9,6 +9,7 @@
 status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![R-CMD-check](https://github.com/wjschne/ggnormviolin/workflows/R-CMD-check/badge.svg)](https://github.com/wjschne/ggnormviolin/actions)
+[![R-CMD-check](https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 A ggplot2 extension for creating normal violin plots with specified
