@@ -1,15 +1,15 @@
-AppVeyor
+CMD
 GeomNormalViolin
 StatNormViolin
 behaviour
 devtools
-ggnormviolin
 ggplot
 github
 goodpractice
 gp
 lifecycle
 linetype
+magrittr
 mult
 nsigma
 ylim

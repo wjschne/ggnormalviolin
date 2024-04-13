@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggnormalviolin <img src="logo.svg" align="right" height="140/"/>
+# ggnormalviolin <a href="https://wjschne.github.io/ggnormalviolin/"><img src="logo.svg" align="right" height="120" width="120" /></a>
 
 <!-- badges: start -->
 

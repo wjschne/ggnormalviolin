@@ -17,7 +17,9 @@ library(ggplot2)
 library(ggnormalviolin)
 ```
 
-# ggnormalviolin <img src="logo.svg" align="right" height="140/"/>
+# ggnormalviolin <a href="https://wjschne.github.io/ggnormalviolin/"><img src="logo.svg" align="right" height="120" width="120" /></a>
+
+
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing) 
