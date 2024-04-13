@@ -1,3 +1,7 @@
+url: https://wjschne.github.io/ggnormalviolin/
+template:
+  bootstrap: 5
+
 figures:
   dev: svglite::svglite
   dev.args:

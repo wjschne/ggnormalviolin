@@ -12,7 +12,7 @@ Description: Uses 'ggplot2' to create normally distributed
     function can be useful in showing hypothetically normal distributions
     and confidence intervals.
 License: CC0
-URL: https://github.com/wjschne/ggnormalviolin
+URL: https://github.com/wjschne/ggnormalviolin, https://wjschne.github.io/ggnormalviolin/
 BugReports: https://github.com/wjschne/ggnormalviolin/issues
 Imports: 
     ggplot2,
