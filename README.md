@@ -135,6 +135,7 @@ p + geom_normalviolin(face_left = FALSE)
 <img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
 
 ``` r
+
 p + geom_normalviolin(
   face_right = FALSE, 
   p_tail = 0.05)
