@@ -10,8 +10,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%",
   fig.width = 7.2916667,
-  fig.height = 7.2916667,
-  dev = "svg"
+  fig.height = 7.2916667
 )
 library(ggplot2)
 library(ggnormalviolin)
@@ -22,9 +21,8 @@ library(ggnormalviolin)
 
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin) [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing) 
-  [![R-CMD-check](https://github.com/wjschne/ggnormviolin/workflows/R-CMD-check/badge.svg)](https://github.com/wjschne/ggnormviolin/actions)
-[![R-CMD-check](https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://CRAN.R-project.org/package=ggnormalviolin)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 
@@ -44,17 +42,18 @@ install.packages("ggnormalviolin")
 
 ### Option 2: Install the development version from GitHub
 
-To install the development version of ggnormalviolin, you need to check if devtools is installed. If not, run this:
+To install the development version of ggnormalviolin, you need to check if the pak package is installed. If not, run this:
 
 ```{r, eval = FALSE}
-install.packages("devtools")
+install.packages("pak")
 ```
 
-Once you are sure you have devtools installed, you can install the development version of ggnormalviolin from GitHub by running this code:
+Once you are sure you have pak installed, you can install the development version of ggnormalviolin from [GitHub](https://github.com/)  by running this code:
 
-```{r, eval = FALSE}
-devtools::install_github("wjschne/ggnormalviolin")
+``` r
+pak::pak("wjschne/ggnormalviolin")
 ```
+
 
 ## Using ggnormalviolin
 
@@ -94,13 +93,13 @@ p + geom_normalviolin(p_tail = 0.05)
 
 Suppose you want to highly only the upper tails. Set `p_upper_tail` to the proportion desired.
 
-```{r}
+```{r uppertail}
 p + geom_normalviolin(p_upper_tail = 0.05)
 ```
 
 Analogously, you can highlight only the lower tails by setting the `p_lower_tail` parameter.
 
-```{r}
+```{r lowertail}
 p + geom_normalviolin(p_lower_tail = 0.05)
 ```
 
@@ -112,7 +111,7 @@ p + geom_normalviolin(
   tail_fill = "white", 
   tail_alpha = 0.8,
   color = "gray20",
-  size = 0.1
+  linewidth = 0.1
   )
 ```
 
@@ -120,7 +119,7 @@ p + geom_normalviolin(
 
 If you want to omit the left or right side of the violins, you can set the `face_left` or `face_right` parameters to `FALSE`.
 
-```{r}
+```{r faceright}
 p + geom_normalviolin(face_left = FALSE)
 
 p + geom_normalviolin(
@@ -133,13 +132,13 @@ p + geom_normalviolin(
 
 You can set the `width` of the violin to any size desired.
 
-```{r}
+```{r setwidth}
 p + geom_normalviolin(width = 1)
 ```
 
 If you want the shape of the distribution to remain constant, map the `width` parameter to a multiple of the standard deviation.
 
-```{r}
+```{r setsdwidth}
 p + geom_normalviolin(aes(width = dist_sd * 0.05))
 
 ```
@@ -148,13 +147,13 @@ p + geom_normalviolin(aes(width = dist_sd * 0.05))
 
 By default, the normal violins extend 4 standard deviations in both directions. Use the `nsigma` parameter to set a different value.
 
-```{r}
+```{r nsigma}
 p + geom_normalviolin(nsigma = 1.5)
 ```
 
 If you set limits on the y scale, it is possible that some of the violins will be distorted or cut in pieces.
 
-```{r}
+```{r ylim}
 p + 
   geom_normalviolin() +
   ylim(50,140)
@@ -162,7 +161,7 @@ p +
 
 This occurs because data outside the limits is discarded, breaking up the polygons that compose the violins into smaller pieces. To prevent such behavior, set the `upper_limit` and `lower_limit` parameters equal to the same limits you have specified for the y scale (or any other values you wish).
 
-```{r}
+```{r upperlowerlimits}
 p + 
   geom_normalviolin(lower_limit = 50, upper_limit = 140) +
   ylim(50,140)
@@ -170,7 +169,7 @@ p +
 
 Alternately, you can set the limits in `ggplot2::coord_cartesian`, which will zoom the plot instead of discarding the data.
 
-```{r}
+```{r coordcartesian}
 p + 
   geom_normalviolin() +
   coord_cartesian(ylim = c(50, 140)) 
@@ -179,3 +178,4 @@ p +
 ## Code of Conduct
 
 Please note that the ggnormalviolin project is released with a [Contributor Code of Conduct](https://github.com/wjschne/ggnormalviolin/blob/master/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
+

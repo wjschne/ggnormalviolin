@@ -1,3 +1,7 @@
+# ggnormalviolin 0.2.0
+
+- Changed default aesthetic `size` to `linewidth`
+
 # ggnormalviolin 0.1.3
 
 -   Added test coverage

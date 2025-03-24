@@ -3,6 +3,7 @@
 #' @keywords internal
 #' @usage NULL
 #' @export
+#' @importFrom dplyr filter
 StatNormalViolin <- ggplot2::ggproto(
   `_class` = "StatNormalViolin",
   `_inherit` = ggplot2::Stat,
@@ -110,6 +111,8 @@ StatNormalViolin <- ggplot2::ggproto(
 #' @keywords internal
 #' @usage NULL
 #' @export
+#' @importFrom grid polygonGrob
+#' @importFrom scales alpha
 GeomNormalViolin <- ggplot2::ggproto(
   `_class` = "GeomNormalViolin",
   `_inherit` = ggplot2::Geom,
@@ -117,7 +120,7 @@ GeomNormalViolin <- ggplot2::ggproto(
   default_aes = ggplot2::aes(
     shape = 16,
     colour = NA,
-    size = 0.5,
+    linewidth = 0.5,
     linetype = 1,
     fill = "gray70",
     alpha = 1,
@@ -134,7 +137,9 @@ GeomNormalViolin <- ggplot2::ggproto(
     # Parameters for each violin
     d_param <- data %>%
       dplyr::group_by(group) %>%
-      dplyr::summarise_all(.funs = list(dplyr::first))
+      dplyr::summarise_all(.funs = list(dplyr::first)) %>%
+      dplyr::ungroup()
+
     # Violin points transformed for grid coordinates
     dpoints <- coord$transform(data, panel_scales)
 
@@ -148,7 +153,7 @@ GeomNormalViolin <- ggplot2::ggproto(
                       fill = scales::alpha(d_param$fill,
                                            d_param$alpha),
                       lty = d_param$linetype,
-                      lwd = d_param$size *  ggplot2::.pt)
+                      lwd = d_param$linewidth *  ggplot2::.pt)
     )
 
     # Filter data for upper tail
@@ -171,7 +176,7 @@ GeomNormalViolin <- ggplot2::ggproto(
           fill = scales::alpha(d_param$tail_fill,
                                d_param$tail_alpha),
           lty = d_param$linetype,
-          lwd = d_param$size *  ggplot2::.pt
+          lwd = d_param$linewidth *  ggplot2::.pt
 
         )
       )
@@ -199,7 +204,7 @@ GeomNormalViolin <- ggplot2::ggproto(
           fill = scales::alpha(d_param$tail_fill,
                                d_param$tail_alpha),
           lty = d_param$linetype,
-          lwd = d_param$size *  ggplot2::.pt
+          lwd = d_param$linewidth *  ggplot2::.pt
         )
       )
     } else {
@@ -247,14 +252,30 @@ GeomNormalViolin <- ggplot2::ggproto(
 #'   \item p_lower_tail (proportion of lower tails highlighted)
 #'   \item face_left (display left half of violin?)
 #'   \item face_right (display right half of violin?)
-#'   \item color
+#'   \item color (of lines)
 #'   \item fill
 #'   \item alpha (of fills)
 #'   \item group
 #'   \item linetype
-#'   \item size (of lines)
+#'   \item linewidth
 #' }
 #' @export
+#' @return A ggplot2 layer that can be added to a plot created with
+#'   [ggplot2::ggplot()].
+#' @examples
+#' library(ggplot2)
+#' d <- data.frame(
+#'   dist = c("A", "B"),
+#'   dist_mean = c(80, 90),
+#'   dist_sd = c(15, 10))
+#'
+#' ggplot(data = d, aes(
+#'   x = dist,
+#'   mu = dist_mean,
+#'   sigma = dist_sd,
+#'   fill = dist)) +
+#'   geom_normalviolin() +
+#'   theme(legend.position = "none")
 geom_normalviolin <- function(
   mapping = NULL,
   data = NULL,

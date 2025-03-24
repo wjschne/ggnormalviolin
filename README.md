@@ -6,10 +6,9 @@
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://cran.r-project.org/package=ggnormalviolin)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![R-CMD-check](https://github.com/wjschne/ggnormviolin/workflows/R-CMD-check/badge.svg)](https://github.com/wjschne/ggnormviolin/actions)
-[![R-CMD-check](https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml)
+status](https://www.r-pkg.org/badges/version/ggnormalviolin)](https://CRAN.R-project.org/package=ggnormalviolin)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 A ggplot2 extension for creating normal violin plots with specified
@@ -31,17 +30,18 @@ install.packages("ggnormalviolin")
 ### Option 2: Install the development version from GitHub
 
 To install the development version of ggnormalviolin, you need to check
-if devtools is installed. If not, run this:
+if the pak package is installed. If not, run this:
 
 ``` r
-install.packages("devtools")
+install.packages("pak")
 ```
 
-Once you are sure you have devtools installed, you can install the
-development version of ggnormalviolin from GitHub by running this code:
+Once you are sure you have pak installed, you can install the
+development version of ggnormalviolin from [GitHub](https://github.com/)
+by running this code:
 
 ``` r
-devtools::install_github("wjschne/ggnormalviolin")
+pak::pak("wjschne/ggnormalviolin")
 ```
 
 ## Using ggnormalviolin
@@ -73,7 +73,7 @@ p <- ggplot(data = d,
 p + geom_normalviolin()
 ```
 
-<img src="man/figures/README-example-1.svg" width="100%" />
+<img src="man/figures/README-example-1.png" width="100%" />
 
 ## Tail Highlighting
 
@@ -86,7 +86,7 @@ the `p_tails` to specify the total area of the tails. Thus, if `p_tail`
 p + geom_normalviolin(p_tail = 0.05)
 ```
 
-<img src="man/figures/README-example2-1.svg" width="100%" />
+<img src="man/figures/README-example2-1.png" width="100%" />
 
 Suppose you want to highly only the upper tails. Set `p_upper_tail` to
 the proportion desired.
@@ -95,7 +95,7 @@ the proportion desired.
 p + geom_normalviolin(p_upper_tail = 0.05)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.svg" width="100%" />
+<img src="man/figures/README-uppertail-1.png" width="100%" />
 
 Analogously, you can highlight only the lower tails by setting the
 `p_lower_tail` parameter.
@@ -104,7 +104,7 @@ Analogously, you can highlight only the lower tails by setting the
 p + geom_normalviolin(p_lower_tail = 0.05)
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />
+<img src="man/figures/README-lowertail-1.png" width="100%" />
 
 The defaults for highlighting is accomplished by selecting a subset of
 the whole distribution, setting `tail_fill` to black, and then making
@@ -118,11 +118,11 @@ p + geom_normalviolin(
   tail_fill = "white", 
   tail_alpha = 0.8,
   color = "gray20",
-  size = 0.1
+  linewidth = 0.1
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.svg" width="100%" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
 ## Direction of Violin
 
@@ -133,7 +133,7 @@ the `face_left` or `face_right` parameters to `FALSE`.
 p + geom_normalviolin(face_left = FALSE)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
+<img src="man/figures/README-faceright-1.png" width="100%" />
 
 ``` r
 
@@ -142,7 +142,7 @@ p + geom_normalviolin(
   p_tail = 0.05)
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-2.svg" width="100%" />
+<img src="man/figures/README-faceright-2.png" width="100%" />
 
 ## Violin Width
 
@@ -152,7 +152,7 @@ You can set the `width` of the violin to any size desired.
 p + geom_normalviolin(width = 1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.svg" width="100%" />
+<img src="man/figures/README-setwidth-1.png" width="100%" />
 
 If you want the shape of the distribution to remain constant, map the
 `width` parameter to a multiple of the standard deviation.
@@ -161,7 +161,7 @@ If you want the shape of the distribution to remain constant, map the
 p + geom_normalviolin(aes(width = dist_sd * 0.05))
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.svg" width="100%" />
+<img src="man/figures/README-setsdwidth-1.png" width="100%" />
 
 ## Setting Limits
 
@@ -172,7 +172,7 @@ directions. Use the `nsigma` parameter to set a different value.
 p + geom_normalviolin(nsigma = 1.5)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.svg" width="100%" />
+<img src="man/figures/README-nsigma-1.png" width="100%" />
 
 If you set limits on the y scale, it is possible that some of the
 violins will be distorted or cut in pieces.
@@ -183,7 +183,7 @@ p +
   ylim(50,140)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.svg" width="100%" />
+<img src="man/figures/README-ylim-1.png" width="100%" />
 
 This occurs because data outside the limits is discarded, breaking up
 the polygons that compose the violins into smaller pieces. To prevent
@@ -197,7 +197,7 @@ p +
   ylim(50,140)
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.svg" width="100%" />
+<img src="man/figures/README-upperlowerlimits-1.png" width="100%" />
 
 Alternately, you can set the limits in `ggplot2::coord_cartesian`, which
 will zoom the plot instead of discarding the data.
@@ -208,7 +208,7 @@ p +
   coord_cartesian(ylim = c(50, 140)) 
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.svg" width="100%" />
+<img src="man/figures/README-coordcartesian-1.png" width="100%" />
 
 ## Code of Conduct
 

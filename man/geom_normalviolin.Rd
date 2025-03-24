@@ -92,10 +92,37 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
-\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{colour = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}'s \code{params} argument. These
+arguments broadly fall into one of 4 categories below. Notably, further
+arguments to the \code{position} argument, or aesthetics that are required
+can \emph{not} be passed through \code{...}. Unknown arguments that are not part
+of the 4 categories below are ignored.
+\itemize{
+\item Static aesthetics that are not mapped to a scale, but are at a fixed
+value and apply to the layer as a whole. For example, \code{colour = "red"}
+or \code{linewidth = 3}. The geom's documentation has an \strong{Aesthetics}
+section that lists the available options. The 'required' aesthetics
+cannot be passed on to the \code{params}. Please note that while passing
+unmapped aesthetics as vectors is technically possible, the order and
+required length is not guaranteed to be parallel to the input data.
+\item When constructing a layer using
+a \verb{stat_*()} function, the \code{...} argument can be used to pass on
+parameters to the \code{geom} part of the layer. An example of this is
+\code{stat_density(geom = "area", outline.type = "both")}. The geom's
+documentation lists which parameters it can accept.
+\item Inversely, when constructing a layer using a
+\verb{geom_*()} function, the \code{...} argument can be used to pass on parameters
+to the \code{stat} part of the layer. An example of this is
+\code{geom_area(stat = "density", adjust = 0.5)}. The stat's documentation
+lists which parameters it can accept.
+\item The \code{key_glyph} argument of \code{\link[ggplot2:layer]{layer()}} may also be passed on through
+\code{...}. This can be one of the functions described as
+\link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
+}}
+}
+\value{
+A ggplot2 layer that can be added to a plot created with
+  [ggplot2::ggplot()].
 }
 \description{
 Creates normal violins with specified means and standard deviations
@@ -115,12 +142,27 @@ Creates normal violins with specified means and standard deviations
   \item p_lower_tail (proportion of lower tails highlighted)
   \item face_left (display left half of violin?)
   \item face_right (display right half of violin?)
-  \item color
+  \item color (of lines)
   \item fill
   \item alpha (of fills)
   \item group
   \item linetype
-  \item size (of lines)
+  \item linewidth
 }
 }
 
+\examples{
+library(ggplot2)
+d <- data.frame(
+  dist = c("A", "B"),
+  dist_mean = c(80, 90),
+  dist_sd = c(15, 10))
+
+ggplot(data = d, aes(
+  x = dist,
+  mu = dist_mean,
+  sigma = dist_sd,
+  fill = dist)) +
+  geom_normalviolin() +
+  theme(legend.position = "none")
+}

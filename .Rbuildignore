@@ -8,9 +8,10 @@
 ^_pkgdown\.yml$
 ^README\.Rmd$
 ^LICENSE\.md$
-^ggnormviolin\.Rproj$
+^ggnormalviolin\.Rproj$
 ^\.Rproj\.user$
 ^\.Rproj\.user*
 ^logo.png$
 ^logo.svg$
 ^pkgdown$
+^dev$
