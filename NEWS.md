@@ -1,6 +1,7 @@
-# ggnormalviolin 0.2.0
+# ggnormalviolin 0.2.0 _2025-03-24_
 
 - Changed default aesthetic `size` to `linewidth`
+- Updated documentation
 
 # ggnormalviolin 0.1.3
 

@@ -1,8 +1,9 @@
 pandoc: '3.2'
 pkgdown: 2.1.1.9000
 pkgdown_sha: 18cca452d736fea33d47b19b4ef4973db9104a75
-articles: {}
-last_built: 2025-03-24T12:59Z
+articles:
+  ggnormalviolin: ggnormalviolin.html
+last_built: 2025-03-24T20:32Z
 urls:
   reference: https://wjschne.github.io/ggnormalviolin/reference
   article: https://wjschne.github.io/ggnormalviolin/articles

@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ggnormalviolin</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="articles/ggnormalviolin.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
@@ -82,112 +83,6 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"wjschne/ggnormalviolin"</span><span class="op">)</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="using-ggnormalviolin">Using ggnormalviolin<a class="anchor" aria-label="anchor" href="#using-ggnormalviolin"></a>
-</h2>
-<p>Suppose there are 4 hypothetically normal distributions with specific means and standard deviations. They can be plotted like so:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wjschne/ggnormalviolin" class="external-link">ggnormalviolin</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Make data</span></span>
-<span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>  dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span>,</span>
-<span>  dist_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">90</span>, <span class="fl">110</span>, <span class="fl">130</span><span class="op">)</span>,</span>
-<span>  dist_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Make base plot</span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">d</span>, </span>
-<span>            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dist</span>,</span>
-<span>                mu <span class="op">=</span> <span class="va">dist_mean</span>,</span>
-<span>                sigma <span class="op">=</span> <span class="va">dist_sd</span>,</span>
-<span>                fill <span class="op">=</span> <span class="va">dist</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co"># Add normal violins</span></span>
-<span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-example-1.png" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="tail-highlighting">Tail Highlighting<a class="anchor" aria-label="anchor" href="#tail-highlighting"></a>
-</h2>
-<p>Suppose you want to highlight the two tails of the distributions. Set the <code>p_tails</code> to specify the total area of the tails. Thus, if <code>p_tail</code> = 0.05, each tail will represent the outermost 2.5% of the distributions (i.e, 0.05 = 2 &amp;mult; 0.025).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span>p_tail <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-example2-1.png" width="100%"></p>
-<p>Suppose you want to highly only the upper tails. Set <code>p_upper_tail</code> to the proportion desired.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span>p_upper_tail <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-uppertail-1.png" width="100%"></p>
-<p>Analogously, you can highlight only the lower tails by setting the <code>p_lower_tail</code> parameter.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span>p_lower_tail <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-lowertail-1.png" width="100%"></p>
-<p>The defaults for highlighting is accomplished by selecting a subset of the whole distribution, setting <code>tail_fill</code> to black, and then making the black fill transparent by setting <code>tail_alpha</code> = 0.4. Setting these values to other colors and levels of transparency can dramatically change the look of the plot.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span></span>
-<span>  p_tail <span class="op">=</span> <span class="fl">0.05</span>, </span>
-<span>  tail_fill <span class="op">=</span> <span class="st">"white"</span>, </span>
-<span>  tail_alpha <span class="op">=</span> <span class="fl">0.8</span>,</span>
-<span>  color <span class="op">=</span> <span class="st">"gray20"</span>,</span>
-<span>  size <span class="op">=</span> <span class="fl">0.1</span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="direction-of-violin">Direction of Violin<a class="anchor" aria-label="anchor" href="#direction-of-violin"></a>
-</h2>
-<p>If you want to omit the left or right side of the violins, you can set the <code>face_left</code> or <code>face_right</code> parameters to <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span>face_left <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-faceright-1.png" width="100%"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span></span>
-<span>  face_right <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>  p_tail <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-faceright-2.png" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="violin-width">Violin Width<a class="anchor" aria-label="anchor" href="#violin-width"></a>
-</h2>
-<p>You can set the <code>width</code> of the violin to any size desired.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-setwidth-1.png" width="100%"></p>
-<p>If you want the shape of the distribution to remain constant, map the <code>width</code> parameter to a multiple of the standard deviation.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>width <span class="op">=</span> <span class="va">dist_sd</span> <span class="op">*</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-setsdwidth-1.png" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="setting-limits">Setting Limits<a class="anchor" aria-label="anchor" href="#setting-limits"></a>
-</h2>
-<p>By default, the normal violins extend 4 standard deviations in both directions. Use the <code>nsigma</code> parameter to set a different value.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span>nsigma <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-nsigma-1.png" width="100%"></p>
-<p>If you set limits on the y scale, it is possible that some of the violins will be distorted or cut in pieces.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">140</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ylim-1.png" width="100%"></p>
-<p>This occurs because data outside the limits is discarded, breaking up the polygons that compose the violins into smaller pieces. To prevent such behavior, set the <code>upper_limit</code> and <code>lower_limit</code> parameters equal to the same limits you have specified for the y scale (or any other values you wish).</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span>lower_limit <span class="op">=</span> <span class="fl">50</span>, upper_limit <span class="op">=</span> <span class="fl">140</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">140</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-upperlowerlimits-1.png" width="100%"></p>
-<p>Alternately, you can set the limits in <code><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">ggplot2::coord_cartesian</a></code>, which will zoom the plot instead of discarding the data.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">140</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<p><img src="reference/figures/README-coordcartesian-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
@@ -240,6 +135,7 @@
 <ul class="list-unstyled">
 <li><a href="https://CRAN.R-project.org/package=ggnormalviolin" class="external-link"><img src="https://www.r-pkg.org/badges/version/ggnormalviolin" alt="CRAN status"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
+<li><a href="https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/wjschne/ggnormalviolin/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 

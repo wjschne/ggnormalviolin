@@ -19,8 +19,14 @@ Imports:
     magrittr,
     scales
 Suggests: 
+    knitr,
+    quarto,
+    ragg,
+    rmarkdown,
     spelling,
     testthat
+VignetteBuilder:
+    quarto
 Encoding: UTF-8
 Language: en-US
 LazyData: true

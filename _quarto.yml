@@ -1,0 +1,5 @@
+project:
+  render: ['*.qmd']
+knitr:
+  opts_chunk:
+    dev: "ragg_png"

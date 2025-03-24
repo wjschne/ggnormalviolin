@@ -12,5 +12,3 @@ test_that("example", {
                   geom_normalviolin(aes(mu = Distribution_mean,
                                         sigma = Distribution_sd)))
 })
-
-

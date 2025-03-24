@@ -15,3 +15,9 @@
 ^logo.svg$
 ^pkgdown$
 ^dev$
+^vignettes/*_files$
+^vignettes/\.quarto$
+^\.quarto$
+_quarto.yml
+^doc$
+^Meta$
