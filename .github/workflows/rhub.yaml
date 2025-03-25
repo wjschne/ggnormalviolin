@@ -93,7 +93,7 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           job-config: ${{ matrix.config.job-config }}
-          token: ${{ secrets.RHUB_TOKEN }}
+          token: tinytex
       - uses: r-hub/actions/run-check@v1
         with:
           job-config: ${{ matrix.config.job-config }}
