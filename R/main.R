@@ -220,7 +220,6 @@ GeomNormalViolin <- ggplot2::ggproto(
 
 #' Creates normal violins with specified means and standard deviations
 #'
-#' @inheritParams  ggplot2::layer
 #' @inheritParams ggplot2::geom_polygon
 #' @param mu A vector of means
 #' @param sigma A vector of standard deviations
