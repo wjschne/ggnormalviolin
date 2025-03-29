@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   ggnormalviolin: ggnormalviolin.html
-last_built: 2025-03-25T18:10Z
+last_built: 2025-03-29T14:13Z
 urls:
   reference: https://wjschne.github.io/ggnormalviolin/reference
   article: https://wjschne.github.io/ggnormalviolin/articles
