@@ -220,7 +220,11 @@ GeomNormalViolin <- ggplot2::ggproto(
 
 #' Creates normal violins with specified means and standard deviations
 #'
+#' @inheritParams ggplot2::layer
+#' @inheritParams ggplot2::geom_point
 #' @inheritParams ggplot2::geom_polygon
+#' @param mapping Set of aesthetic mappings created by ggplot2::aes().
+#' @param data The data to be displayed in this layer
 #' @param mu A vector of means
 #' @param sigma A vector of standard deviations
 #' @param nsigma The number of standard deviations each violin should extend
@@ -239,7 +243,9 @@ GeomNormalViolin <- ggplot2::ggproto(
 #' limits in scale_y_continuous or ylim distorts the polygons.
 #' @param face_left Display left half of violins. Defaults to `TRUE`
 #' @param face_right Display right half of violins. Defaults to `TRUE`
-#'
+#' @param inherit.aes If `FALSE`, overrides the default aesthetics,
+#' rather than combining with them.
+#' @param ... Other arguments passed to `ggplot2::layer`
 #' @section Aesthetics:
 #' \code{geom_normviolin} understands the following aesthetics
 #' (required aesthetics are in bold):
@@ -263,7 +269,7 @@ GeomNormalViolin <- ggplot2::ggproto(
 #' }
 #' @export
 #' @return A ggplot2 layer that can be added to a plot created with
-#'   [ggplot2::ggplot()].
+#'   [ggplot()][ggplot2::ggplot()].
 #' @examples
 #' library(ggplot2)
 #' d <- data.frame(

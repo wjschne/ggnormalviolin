@@ -98,7 +98,7 @@ The defaults for highlighting is accomplished by selecting a subset of the whole
 #|   Plot of 4 normal violin shapes of different fill colors,
 #|   means, and standard deviations, with white tails,
 #|   and gray outlines.
-p + 
+p +
   geom_normalviolin(
     p_tail = 0.05,
     tail_fill = "white",
