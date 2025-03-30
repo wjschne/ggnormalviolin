@@ -22,3 +22,4 @@ _quarto.yml
 ^doc$
 ^Meta$
 ^revdep$
+^CRAN-SUBMISSION$
