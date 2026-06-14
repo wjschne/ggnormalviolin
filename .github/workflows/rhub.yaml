@@ -36,6 +36,9 @@ jobs:
       platforms: ${{ steps.rhub-setup.outputs.platforms }}
 
     steps:
+     - name: Install Quarto CLI
+        uses: quarto-dev/quarto-actions/setup@v2
+    
     # NO NEED TO CHECKOUT HERE
     - uses: r-hub/actions/setup@v1
       with:
