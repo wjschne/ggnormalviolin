@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggnormalviolin</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +79,7 @@
 <span>  dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span>,</span>
 <span>  dist_mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">90</span>, <span class="fl">110</span>, <span class="fl">130</span><span class="op">)</span>,</span>
 <span>  dist_sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span>  cp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.4</span>, <span class="fl">0.1</span><span class="op">)</span></span>
+<span>  cp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Make base plot</span></span>
@@ -155,11 +155,15 @@ Figure 4: How to shade the lower tails only
 <p>The <code>p_tail</code>, <code>p_lower_tail</code>, and <code>p_upper_tail</code> can be different for each violin by mapping them to a variable.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="../reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>p_tail <span class="op">=</span> <span class="va">cp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="../reference/geom_normalviolin.html">geom_normalviolin</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>p_upper_tail <span class="op">=</span> <span class="va">cp</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img src="ggnormalviolin_files/figure-html/unnamed-chunk-1-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with different proportions of the lower tails shaded." width="624"></p>
-<figcaption>How to shade the lower tails differently for each grid</figcaption></figure>
+<div id="fig-shadedifferent" class="quarto-float quarto-figure quarto-figure-center" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with different proportions of the lower tails shaded.">
+<figure class="quarto-float quarto-float-fig"><div aria-describedby="fig-shadedifferent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ggnormalviolin_files/figure-html/fig-shadedifferent-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with different proportions of the lower tails shaded." width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shadedifferent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure 5: How to shade the lower tails differently for each grid
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -180,7 +184,7 @@ Figure 4: How to shade the lower tails only
 <img src="ggnormalviolin_files/figure-html/fig-style-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with white tails, and gray outlines." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-style-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 5: How to style normal violins
+Figure 6: How to style normal violins
 </figcaption></figure>
 </div>
 </div>
@@ -197,7 +201,7 @@ Figure 5: How to style normal violins
 <img src="ggnormalviolin_files/figure-html/fig-faceright-1.png" alt="Plot of 4 normal half-violin shapes of different fill colors, means, and standard deviations, with 5 percent of the upper tails shaded." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-faceright-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 6: How make half-violins
+Figure 7: How make half-violins
 </figcaption></figure>
 </div>
 </div>
@@ -214,7 +218,7 @@ Figure 6: How make half-violins
 <img src="ggnormalviolin_files/figure-html/fig-setwidth-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with width set to 1." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setwidth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 7: How to set violin width to a constant value
+Figure 8: How to set violin width to a constant value
 </figcaption></figure>
 </div>
 </div>
@@ -229,7 +233,7 @@ Figure 7: How to set violin width to a constant value
 <img src="ggnormalviolin_files/figure-html/fig-setsdwidth-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with width set to be proportional to the standard deviation" width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setsdwidth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 8: How to set violin width to be proportional to the standard deviation
+Figure 9: How to set violin width to be proportional to the standard deviation
 </figcaption></figure>
 </div>
 </div>
@@ -246,7 +250,7 @@ Figure 8: How to set violin width to be proportional to the standard deviation
 <img src="ggnormalviolin_files/figure-html/fig-nsigma-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with height set to plus or minus 1.5 standard deviations." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nsigma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 9: How to set violin height
+Figure 10: How to set violin height
 </figcaption></figure>
 </div>
 </div>
@@ -263,7 +267,7 @@ Figure 9: How to set violin height
 <img src="ggnormalviolin_files/figure-html/fig-ylim-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with limits set too narrowly, which distors the violin shapes." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ylim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 10: A distorted plot due to limits set too narrowly
+Figure 11: A distorted plot due to limits set too narrowly
 </figcaption></figure>
 </div>
 </div>
@@ -280,7 +284,7 @@ Figure 10: A distorted plot due to limits set too narrowly
 <img src="ggnormalviolin_files/figure-html/fig-upperlowerlimits-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with limits set appropriately wide using the ylim function." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-upperlowerlimits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 11: How to set plot limits to prevent image distortion
+Figure 12: How to set plot limits to prevent image distortion
 </figcaption></figure>
 </div>
 </div>
@@ -297,7 +301,7 @@ Figure 11: How to set plot limits to prevent image distortion
 <img src="ggnormalviolin_files/figure-html/fig-coordcartesian-1.png" alt="Plot of 4 normal violin shapes of different fill colors, means, and standard deviations, with limits set appropriately wide using the coord_cartesian function's ylim parameter." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coordcartesian-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure 12: How to set zooming limits using a <code>coord_*</code> function
+Figure 13: How to set zooming limits using a <code>coord_*</code> function
 </figcaption></figure>
 </div>
 </div>

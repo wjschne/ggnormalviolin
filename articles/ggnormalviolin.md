@@ -13,7 +13,7 @@ d <- data.frame(
   dist = c("A", "B", "C", "D"),
   dist_mean = c(80, 90, 110, 130),
   dist_sd = c(15, 10, 20, 5),
-  cp = seq(0.1, 0.4, 0.1)
+  cp = c(0.5, 0.8, 0.2, 0.1)
 )
 
 # Make base plot
@@ -86,14 +86,14 @@ each violin by mapping them to a variable.
 
 ``` r
 
-p + geom_normalviolin(aes(p_tail = cp))
+p + geom_normalviolin(aes(p_upper_tail = cp))
 ```
 
 ![Plot of 4 normal violin shapes of different fill colors, means, and
 standard deviations, with different proportions of the lower tails
-shaded.](ggnormalviolin_files/figure-html/unnamed-chunk-1-1.png)
+shaded.](ggnormalviolin_files/figure-html/fig-shadedifferent-1.png)
 
-How to shade the lower tails differently for each grid
+Figure 5: How to shade the lower tails differently for each grid
 
 The defaults for highlighting is accomplished by selecting a subset of
 the whole distribution, setting `tail_fill` to black, and then making
@@ -117,7 +117,7 @@ p +
 standard deviations, with white tails, and gray
 outlines.](ggnormalviolin_files/figure-html/fig-style-1.png)
 
-Figure 5: How to style normal violins
+Figure 6: How to style normal violins
 
 ## Direction of Violin
 
@@ -133,7 +133,7 @@ p + geom_normalviolin(face_right = FALSE, p_tail = 0.05)
 and standard deviations, with 5 percent of the upper tails
 shaded.](ggnormalviolin_files/figure-html/fig-faceright-1.png)
 
-Figure 6: How make half-violins
+Figure 7: How make half-violins
 
 ## Violin Width
 
@@ -148,7 +148,7 @@ p + geom_normalviolin(width = 1)
 standard deviations, with width set to
 1.](ggnormalviolin_files/figure-html/fig-setwidth-1.png)
 
-Figure 7: How to set violin width to a constant value
+Figure 8: How to set violin width to a constant value
 
 If you want the shape of the distribution to remain constant, map the
 `width` parameter to a multiple of the standard deviation.
@@ -162,7 +162,7 @@ p + geom_normalviolin(aes(width = dist_sd * 0.05))
 standard deviations, with width set to be proportional to the standard
 deviation](ggnormalviolin_files/figure-html/fig-setsdwidth-1.png)
 
-Figure 8: How to set violin width to be proportional to the standard
+Figure 9: How to set violin width to be proportional to the standard
 deviation
 
 ## Setting Limits
@@ -179,7 +179,7 @@ p + geom_normalviolin(nsigma = 1.5)
 standard deviations, with height set to plus or minus 1.5 standard
 deviations.](ggnormalviolin_files/figure-html/fig-nsigma-1.png)
 
-Figure 9: How to set violin height
+Figure 10: How to set violin height
 
 If you set limits on the y scale, it is possible that some of the
 violins will be distorted or cut in pieces.
@@ -195,7 +195,7 @@ p +
 standard deviations, with limits set too narrowly, which distors the
 violin shapes.](ggnormalviolin_files/figure-html/fig-ylim-1.png)
 
-Figure 10: A distorted plot due to limits set too narrowly
+Figure 11: A distorted plot due to limits set too narrowly
 
 This occurs because data outside the limits is discarded, breaking up
 the polygons that compose the violins into smaller pieces. To prevent
@@ -214,7 +214,7 @@ p +
 standard deviations, with limits set appropriately wide using the ylim
 function.](ggnormalviolin_files/figure-html/fig-upperlowerlimits-1.png)
 
-Figure 11: How to set plot limits to prevent image distortion
+Figure 12: How to set plot limits to prevent image distortion
 
 Alternately, you can set the limits in
 [`ggplot2::coord_cartesian`](https://ggplot2.tidyverse.org/reference/coord_cartesian.html)
@@ -233,4 +233,4 @@ standard deviations, with limits set appropriately wide using the
 coord_cartesian function's ylim
 parameter.](ggnormalviolin_files/figure-html/fig-coordcartesian-1.png)
 
-Figure 12: How to set zooming limits using a `coord_*` function
+Figure 13: How to set zooming limits using a `coord_*` function

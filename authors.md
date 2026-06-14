@@ -11,13 +11,13 @@ Source:
 [`DESCRIPTION`](https://github.com/wjschne/ggnormalviolin/blob/main/DESCRIPTION)
 
 Schneider W (2026). *ggnormalviolin: A 'ggplot2' Extension to Make
-Normal Violin Plots*. R package version 0.2.1.9000,
+Normal Violin Plots*. R package version 0.3.0,
 <https://github.com/wjschne/ggnormalviolin>.
 
     @Manual{,
       title = {ggnormalviolin: A 'ggplot2' Extension to Make Normal Violin Plots},
       author = {W. Joel Schneider},
       year = {2026},
-      note = {R package version 0.2.1.9000},
+      note = {R package version 0.3.0},
       url = {https://github.com/wjschne/ggnormalviolin},
     }
