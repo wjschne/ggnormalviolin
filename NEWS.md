@@ -1,6 +1,8 @@
 # ggnormalviolin (development version)
 
-# ggnormalviolin 0.2.1
+# ggnormalviolin 0.3.0 _2026-06-13
+
+- allow `p_tail`, `p_upper_tail` and `p_lower_tail` to be mapped.
 
 # ggnormalviolin 0.2.0 _2025-03-24_
 

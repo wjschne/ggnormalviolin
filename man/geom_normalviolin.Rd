@@ -10,9 +10,9 @@ geom_normalviolin(
   mu = NULL,
   sigma = NULL,
   nsigma = 4,
-  p_tail = 0,
-  p_lower_tail = p_tail/2,
-  p_upper_tail = p_tail/2,
+  p_tail = NULL,
+  p_lower_tail = NULL,
+  p_upper_tail = NULL,
   tail_fill = "black",
   tail_alpha = 0.4,
   width = 0.6,
@@ -69,7 +69,9 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.}
+display. To include legend keys for all levels, even
+when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
 
 \item{inherit.aes}{If `FALSE`, overrides the default aesthetics,
 rather than combining with them.}

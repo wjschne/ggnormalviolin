@@ -11,9 +11,9 @@ StatNormalViolin <- ggplot2::ggproto(
   default_aes = ggplot2::aes(
     width = 0.6,
     nsigma = 4,
-    p_tail = 0,
-    p_lower_tail = 0,
-    p_upper_tail = 0,
+    p_tail = NULL,
+    p_lower_tail = NULL,
+    p_upper_tail = NULL,
     face_left = TRUE,
     face_right = TRUE
   ),
@@ -22,18 +22,8 @@ StatNormalViolin <- ggplot2::ggproto(
       data$width <- params$width
     }
 
-    if (is.null(data$nsigma))
+    if (is.null(data$nsigma)) {
       data$nsigma <- params$nsigma
-
-    if (is.null(data$p_tail)) {
-      data$p_tail <- params$p_tail
-
-      if (all(params$p_upper_tail == 0)) {
-        data$p_upper_tail <- params$p_tail / 2
-      }
-      if (all(params$p_lower_tail == 0)) {
-        data$p_lower_tail <- params$p_tail / 2
-      }
     }
 
     if (is.null(data$p_upper_tail)) {
@@ -42,6 +32,25 @@ StatNormalViolin <- ggplot2::ggproto(
 
     if (is.null(data$p_lower_tail)) {
       data$p_lower_tail <- params$p_lower_tail
+    }
+
+    if (is.null(data$p_upper_tail)) {
+      if (!is.null(data$p_tail)) {
+        data$p_upper_tail <- data$p_tail / 2
+      }
+
+      if (!is.null(params$p_tail)) {
+        data$p_upper_tail <- params$p_tail / 2
+      }
+    }
+
+    if (is.null(data$p_lower_tail)) {
+      if (!is.null(data$p_tail)) {
+        data$p_lower_tail <- data$p_tail / 2
+      }
+      if (!is.null(params$p_tail)) {
+        data$p_lower_tail <- params$p_tail / 2
+      }
     }
 
     if (is.null(data$face_left)) {
@@ -56,17 +65,19 @@ StatNormalViolin <- ggplot2::ggproto(
 
     data
   },
-  compute_group = function(data,
-                           scales,
-                           lower_limit = NA,
-                           upper_limit = NA,
-                           width = 0.6,
-                           nsigma = 4,
-                           p_tail = 0,
-                           p_upper_tail = 0,
-                           p_lower_tail = 0,
-                           face_left = TRUE,
-                           face_right = TRUE) {
+  compute_group = function(
+    data,
+    scales,
+    lower_limit = NA,
+    upper_limit = NA,
+    width = 0.6,
+    nsigma = 4,
+    p_tail = NULL,
+    p_upper_tail = NULL,
+    p_lower_tail = NULL,
+    face_left = TRUE,
+    face_right = TRUE
+  ) {
     # The y values start at right side at 0, go up to the positive tail,
     # reverse to left side, go to the negative tail,
     # reverse again to right side, and then return to 0.
@@ -77,25 +88,40 @@ StatNormalViolin <- ggplot2::ggproto(
       seq(0, data$nsigma, by = 0.01),
       seq(data$nsigma, -1 * data$nsigma, by = -0.01),
       seq(-1 * data$nsigma, 0, by = 0.01)
-    ) *  data$sigma + data$mu
+    ) *
+      data$sigma +
+      data$mu
 
     # Which direction the violin should deviate?
     signx <- c(
-      rep(1 * data$face_right, length(seq(
-        0, data$nsigma, 0.01
-      ))),
-      rep(-1 * data$face_left, length(
-        seq(data$nsigma, -1 * data$nsigma, -0.01)
-      )),
-      rep(1 * data$face_right, length(seq(
-        -1 * data$nsigma, 0, 0.01
-      )))
+      rep(
+        1 * data$face_right,
+        length(seq(
+          0,
+          data$nsigma,
+          0.01
+        ))
+      ),
+      rep(
+        -1 * data$face_left,
+        length(
+          seq(data$nsigma, -1 * data$nsigma, -0.01)
+        )
+      ),
+      rep(
+        1 * data$face_right,
+        length(seq(
+          -1 * data$nsigma,
+          0,
+          0.01
+        ))
+      )
     )
 
     # Set x position of violin
     maxwidth <- dnorm(data$mu, data$mu, data$sigma)
     xwidth <- 0.5 * signx * data$width
-    xpos <-  xwidth * dnorm(y, data$mu, data$sigma) / maxwidth  +  data$x
+    xpos <- xwidth * dnorm(y, data$mu, data$sigma) / maxwidth + data$x
 
     # Make data.frame
     d <- data.frame(
@@ -106,10 +132,12 @@ StatNormalViolin <- ggplot2::ggproto(
       sigma = data$sigma
     )
 
-    if (!is.na(upper_limit))
+    if (!is.na(upper_limit)) {
       d <- dplyr::filter(d, y <= upper_limit)
-    if (!is.na(lower_limit))
+    }
+    if (!is.na(lower_limit)) {
       d <- dplyr::filter(d, y >= lower_limit)
+    }
     d
   }
 )
@@ -157,62 +185,70 @@ GeomNormalViolin <- ggplot2::ggproto(
         col = d_param$colour,
         fill = scales::alpha(d_param$fill, d_param$alpha),
         lty = d_param$linetype,
-        lwd = d_param$linewidth *  ggplot2::.pt
+        lwd = d_param$linewidth * ggplot2::.pt
       )
     )
 
     # Filter data for upper tail
-    data_uppertail <- data %>%
-      dplyr::mutate(UB = qnorm(1 - p_upper_tail) * sigma + mu) %>%
-      dplyr::filter(y >= UB)
+    if ("p_upper_tail" %in% colnames(data)) {
+      data_uppertail <- data %>%
+        dplyr::mutate(UB = qnorm(1 - p_upper_tail) * sigma + mu) %>%
+        dplyr::filter(y >= UB)
 
-    if (nrow(data_uppertail) > 0) {
-      # Transform upper tail data for grid coordinates
-      duppertail <- coord$transform(data_uppertail, panel_scales)
+      if (nrow(data_uppertail) > 0) {
+        # Transform upper tail data for grid coordinates
+        duppertail <- coord$transform(data_uppertail, panel_scales)
 
-      # Make upper tail polygon
-      g_upper_tail <- grid::polygonGrob(
-        default.units = "native",
-        x = duppertail$x,
-        y = duppertail$y,
-        id = duppertail$group,
-        gp = grid::gpar(
-          col = d_param$colour,
-          fill = scales::alpha(d_param$tail_fill, d_param$tail_alpha),
-          lty = d_param$linetype,
-          lwd = d_param$linewidth *  ggplot2::.pt
-
+        # Make upper tail polygon
+        g_upper_tail <- grid::polygonGrob(
+          default.units = "native",
+          x = duppertail$x,
+          y = duppertail$y,
+          id = duppertail$group,
+          gp = grid::gpar(
+            col = d_param$colour,
+            fill = scales::alpha(d_param$tail_fill, d_param$tail_alpha),
+            lty = d_param$linetype,
+            lwd = d_param$linewidth * ggplot2::.pt
+          )
         )
-      )
+      } else {
+        g_upper_tail <- grid::nullGrob()
+      }
     } else {
       g_upper_tail <- grid::nullGrob()
     }
 
-    # Filter data for lower tail
-    data_lowertail <- data %>%
-      dplyr::mutate(LB = qnorm(p_lower_tail) * sigma + mu) %>%
-      dplyr::filter(y <= LB)
+    if ("p_lower_tail" %in% colnames(data)) {
+      # Filter data for lower tail
+      data_lowertail <- data %>%
+        dplyr::mutate(LB = qnorm(p_lower_tail) * sigma + mu) %>%
+        dplyr::filter(y <= LB)
 
-    if (nrow(data_lowertail) > 0) {
-      # Transform lower tail data for grid coordinates
-      dlowertail <- coord$transform(data_lowertail, panel_scales)
+      if (nrow(data_lowertail) > 0) {
+        # Transform lower tail data for grid coordinates
+        dlowertail <- coord$transform(data_lowertail, panel_scales)
 
-      # Make lower tail polygon
-      g_lower_tail <- grid::polygonGrob(
-        default.units = "native",
-        x = dlowertail$x,
-        y = dlowertail$y,
-        id = dlowertail$group,
-        gp = grid::gpar(
-          col = d_param$colour,
-          fill = scales::alpha(d_param$tail_fill, d_param$tail_alpha),
-          lty = d_param$linetype,
-          lwd = d_param$linewidth *  ggplot2::.pt
+        # Make lower tail polygon
+        g_lower_tail <- grid::polygonGrob(
+          default.units = "native",
+          x = dlowertail$x,
+          y = dlowertail$y,
+          id = dlowertail$group,
+          gp = grid::gpar(
+            col = d_param$colour,
+            fill = scales::alpha(d_param$tail_fill, d_param$tail_alpha),
+            lty = d_param$linetype,
+            lwd = d_param$linewidth * ggplot2::.pt
+          )
         )
-      )
+      } else {
+        g_lower_tail <- grid::nullGrob()
+      }
     } else {
       g_lower_tail <- grid::nullGrob()
     }
+
     grid::gTree(children = grid::gList(gbody, g_upper_tail, g_lower_tail))
   }
 )
@@ -284,25 +320,27 @@ GeomNormalViolin <- ggplot2::ggproto(
 #'   fill = dist)) +
 #'   geom_normalviolin() +
 #'   theme(legend.position = "none")
-geom_normalviolin <- function(mapping = NULL,
-                              data = NULL,
-                              mu = NULL,
-                              sigma = NULL,
-                              nsigma = 4,
-                              p_tail = 0,
-                              p_lower_tail = p_tail / 2,
-                              p_upper_tail = p_tail / 2,
-                              tail_fill = "black",
-                              tail_alpha = 0.4,
-                              width = 0.6,
-                              upper_limit = NA,
-                              lower_limit = NA,
-                              face_left = TRUE,
-                              face_right = TRUE,
-                              na.rm = FALSE,
-                              show.legend = NA,
-                              inherit.aes = TRUE,
-                              ...) {
+geom_normalviolin <- function(
+  mapping = NULL,
+  data = NULL,
+  mu = NULL,
+  sigma = NULL,
+  nsigma = 4,
+  p_tail = NULL,
+  p_lower_tail = NULL,
+  p_upper_tail = NULL,
+  tail_fill = "black",
+  tail_alpha = 0.4,
+  width = 0.6,
+  upper_limit = NA,
+  lower_limit = NA,
+  face_left = TRUE,
+  face_right = TRUE,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  ...
+) {
   ggplot2::layer(
     data = data,
     mapping = mapping,

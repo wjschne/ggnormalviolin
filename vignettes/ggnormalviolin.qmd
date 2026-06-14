@@ -38,7 +38,8 @@ library(ggnormalviolin)
 d <- data.frame(
   dist = c("A", "B", "C", "D"),
   dist_mean = c(80, 90, 110, 130),
-  dist_sd = c(15, 10, 20, 5)
+  dist_sd = c(15, 10, 20, 5),
+  cp = seq(0.1, 0.4, 0.1)
 )
 
 # Make base plot
@@ -90,6 +91,18 @@ Analogously, you can highlight only the lower tails by setting the `p_lower_tail
 p + geom_normalviolin(p_lower_tail = 0.05)
 ```
 
+The `p_tail`, `p_lower_tail`, and `p_upper_tail` can be different for each violin by mapping them to a variable.
+
+```{r}
+#| fig-cap: How to shade the lower tails differently for each grid
+#| fig-alt: >
+#|   Plot of 4 normal violin shapes of different fill colors,
+#|   means, and standard deviations, with different proportions of the
+#|   lower tails shaded.
+p + geom_normalviolin(aes(p_tail = cp))
+```
+
+
 The defaults for highlighting is accomplished by selecting a subset of the whole distribution, setting `tail_fill` to black, and then making the black fill transparent by setting `tail_alpha` = 0.4. Setting these values to other colors and levels of transparency can dramatically change the look of the plot.
 
 ```{r fig-style}
@@ -107,6 +120,9 @@ p +
     linewidth = 0.1
   )
 ```
+
+
+
 
 ## Direction of Violin
 

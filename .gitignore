@@ -26,3 +26,5 @@ vignettes/*.pdf
 *.knit.md
 .Renviron
 revdep/
+
+**/*.quarto_ipynb
