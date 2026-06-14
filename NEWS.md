@@ -3,6 +3,7 @@
 # ggnormalviolin 0.3.0 _2026-06-13
 
 - allow `p_tail`, `p_upper_tail` and `p_lower_tail` to be mapped.
+- removed dependencies on dplyr and magrittr
 
 # ggnormalviolin 0.2.0 _2025-03-24_
 

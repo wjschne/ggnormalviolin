@@ -13,7 +13,8 @@ knitr:
     comment: '#>'
 ---
 
-```{r setup}
+```{r}
+#| label: setup
 #| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -26,7 +27,8 @@ library(ggnormalviolin)
 
 Suppose there are 4 hypothetically normal distributions with specific means and standard deviations. They can be plotted like so:
 
-```{r fig-example}
+```{r}
+#| label: fig-example
 #| fig-cap: Example of a how to use ggnormalviolin
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -39,7 +41,7 @@ d <- data.frame(
   dist = c("A", "B", "C", "D"),
   dist_mean = c(80, 90, 110, 130),
   dist_sd = c(15, 10, 20, 5),
-  cp = seq(0.1, 0.4, 0.1)
+  cp = c(0.5, 0.8, 0.2, 0.1)
 )
 
 # Make base plot
@@ -60,7 +62,8 @@ p + geom_normalviolin()
 
 Suppose you want to highlight the two tails of the distributions. Set the `p_tails` to specify the total area of the tails. Thus, if `p_tail` = 0.05, each tail will represent the outermost 2.5% of the distributions (i.e, 0.05 = 2 &mult; 0.025).
 
-```{r fig-example2}
+```{r}
+#| label: fig-example2
 #| fig-cap: How to shade both violin tails
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -71,7 +74,8 @@ p + geom_normalviolin(p_tail = 0.05)
 
 Suppose you want to highly only the upper tails. Set `p_upper_tail` to the proportion desired.
 
-```{r fig-uppertail}
+```{r}
+#| label: fig-uppertail
 #| fig-cap: How to shade the upper tails only
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -82,7 +86,8 @@ p + geom_normalviolin(p_upper_tail = 0.05)
 
 Analogously, you can highlight only the lower tails by setting the `p_lower_tail` parameter.
 
-```{r fig-lowertail}
+```{r}
+#| label: fig-lowertail
 #| fig-cap: How to shade the lower tails only
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -94,18 +99,20 @@ p + geom_normalviolin(p_lower_tail = 0.05)
 The `p_tail`, `p_lower_tail`, and `p_upper_tail` can be different for each violin by mapping them to a variable.
 
 ```{r}
+#| label: fig-shadedifferent
 #| fig-cap: How to shade the lower tails differently for each grid
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
 #|   means, and standard deviations, with different proportions of the
 #|   lower tails shaded.
-p + geom_normalviolin(aes(p_tail = cp))
+p + geom_normalviolin(aes(p_upper_tail = cp))
 ```
 
 
 The defaults for highlighting is accomplished by selecting a subset of the whole distribution, setting `tail_fill` to black, and then making the black fill transparent by setting `tail_alpha` = 0.4. Setting these values to other colors and levels of transparency can dramatically change the look of the plot.
 
-```{r fig-style}
+```{r}
+#| label: fig-style
 #| fig-cap: How to style normal violins
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -128,7 +135,8 @@ p +
 
 If you want to omit the left or right side of the violins, you can set the `face_left` or `face_right` parameters to `FALSE`.
 
-```{r fig-faceright}
+```{r}
+#| label: fig-faceright
 #| fig-cap: How make half-violins
 #| fig-alt: >
 #|   Plot of 4 normal half-violin shapes of different fill colors,
@@ -142,7 +150,8 @@ p + geom_normalviolin(face_right = FALSE, p_tail = 0.05)
 
 You can set the `width` of the violin to any size desired.
 
-```{r fig-setwidth}
+```{r}
+#| label: fig-setwidth
 #| fig-cap: How to set violin width to a constant value
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -152,7 +161,8 @@ p + geom_normalviolin(width = 1)
 
 If you want the shape of the distribution to remain constant, map the `width` parameter to a multiple of the standard deviation.
 
-```{r fig-setsdwidth}
+```{r}
+#| label: fig-setsdwidth
 #| fig-cap: How to set violin width to be proportional to the standard deviation
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -166,7 +176,8 @@ p + geom_normalviolin(aes(width = dist_sd * 0.05))
 
 By default, the normal violins extend 4 standard deviations in both directions. Use the `nsigma` parameter to set a different value.
 
-```{r fig-nsigma}
+```{r}
+#| label: fig-nsigma
 #| fig-cap: How to set violin height
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -177,7 +188,8 @@ p + geom_normalviolin(nsigma = 1.5)
 
 If you set limits on the y scale, it is possible that some of the violins will be distorted or cut in pieces.
 
-```{r fig-ylim}
+```{r}
+#| label: fig-ylim
 #| fig-cap: A distorted plot due to limits set too narrowly
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -190,7 +202,8 @@ p +
 
 This occurs because data outside the limits is discarded, breaking up the polygons that compose the violins into smaller pieces. To prevent such behavior, set the `upper_limit` and `lower_limit` parameters equal to the same limits you have specified for the y scale (or any other values you wish).
 
-```{r fig-upperlowerlimits}
+```{r}
+#| label: fig-upperlowerlimits
 #| fig-cap: How to set plot limits to prevent image distortion
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,
@@ -203,7 +216,8 @@ p +
 
 Alternately, you can set the limits in `ggplot2::coord_cartesian` (or any of the `coord_*` functions), which will zoom the plot instead of discarding the data.
 
-```{r fig-coordcartesian}
+```{r}
+#| label: fig-coordcartesian
 #| fig-cap: How to set zooming limits using a `coord_*` function
 #| fig-alt: >
 #|   Plot of 4 normal violin shapes of different fill colors,

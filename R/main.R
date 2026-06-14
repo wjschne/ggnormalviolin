@@ -3,7 +3,6 @@
 #' @keywords internal
 #' @usage NULL
 #' @export
-#' @importFrom dplyr filter
 StatNormalViolin <- ggplot2::ggproto(
   `_class` = "StatNormalViolin",
   `_inherit` = ggplot2::Stat,
@@ -133,10 +132,10 @@ StatNormalViolin <- ggplot2::ggproto(
     )
 
     if (!is.na(upper_limit)) {
-      d <- dplyr::filter(d, y <= upper_limit)
+      d <- d[d$y < upper_limit, ]
     }
     if (!is.na(lower_limit)) {
-      d <- dplyr::filter(d, y >= lower_limit)
+      d <- d[d$y >= lower_limit, ]
     }
     d
   }
@@ -167,10 +166,8 @@ GeomNormalViolin <- ggplot2::ggproto(
   draw_key = ggplot2::draw_key_polygon,
   draw_panel = function(data, panel_scales, coord) {
     # Parameters for each violin
-    d_param <- data %>%
-      dplyr::group_by(group) %>%
-      dplyr::summarise_all(.funs = list(dplyr::first)) %>%
-      dplyr::ungroup()
+    d_param <- data[!duplicated(data$group), ]
+    d_param <- d_param[order(d_param$group), ]
 
     # Violin points transformed for grid coordinates
     dpoints <- coord$transform(data, panel_scales)
@@ -191,9 +188,11 @@ GeomNormalViolin <- ggplot2::ggproto(
 
     # Filter data for upper tail
     if ("p_upper_tail" %in% colnames(data)) {
-      data_uppertail <- data %>%
-        dplyr::mutate(UB = qnorm(1 - p_upper_tail) * sigma + mu) %>%
-        dplyr::filter(y >= UB)
+      data_uppertail <- data
+      data_uppertail$UB <- qnorm(1 - data_uppertail$p_upper_tail) *
+        data_uppertail$sigma +
+        data_uppertail$mu
+      data_uppertail <- data_uppertail[data_uppertail$y > data_uppertail$UB, ]
 
       if (nrow(data_uppertail) > 0) {
         # Transform upper tail data for grid coordinates
@@ -221,9 +220,11 @@ GeomNormalViolin <- ggplot2::ggproto(
 
     if ("p_lower_tail" %in% colnames(data)) {
       # Filter data for lower tail
-      data_lowertail <- data %>%
-        dplyr::mutate(LB = qnorm(p_lower_tail) * sigma + mu) %>%
-        dplyr::filter(y <= LB)
+      data_lowertail <- data
+      data_lowertail$LB <- qnorm(data_lowertail$p_lower_tail) *
+        data_lowertail$sigma +
+        data_lowertail$mu
+      data_lowertail <- data_lowertail[data_lowertail$y <= data_lowertail$LB, ]
 
       if (nrow(data_lowertail) > 0) {
         # Transform lower tail data for grid coordinates

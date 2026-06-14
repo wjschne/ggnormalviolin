@@ -3,7 +3,7 @@ GeomNormalViolin
 Lifecycle
 StatNormViolin
 aes
-behaviour
+dplyr
 ggplot
 github
 goodpractice
